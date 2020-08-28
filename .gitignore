@@ -1,0 +1,6 @@
+functions/search/node_modules/
+functions/api/node_modules/
+# Local Netlify folder
+.netlify
+
+**/.DS_Store

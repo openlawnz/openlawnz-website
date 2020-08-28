@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title></title>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="icon" type="image/png" href="img/favicon.png" />
+		<link href="css/global.css" rel="stylesheet" />
+		<link href="css/single-case.css" rel="stylesheet" />
+	</head>
+	<body>
+		<header>
+			<div class="inner">
+				<div>
+					<a href="/"><img src="img/global/logo.svg" alt="OpenLaw NZ logo" /></a>
+				</div>
+				<nav>
+					<a href="our-mission.html">Our Mission</a>
+					<a href="how-to-use.html">How to Use</a>
+					<a href="blog.html">Blog</a>
+				</nav>
+				<form method="get" action="search.html">
+					<div id="search-simple">
+						<input type="search" placeholder="Search 30k cases" name="q" id="top-search" required /><button
+							type="submit"
+						>
+							Search
+						</button>
+					</div>
+					<div id="search-options">
+						<a href="search.html">Advanced Search</a>
+					</div>
+				</form>
+			</div>
+		</header>
+		<div id="hero">
+			<div class="inner">
+				<h1 class="hidden" id="has-case">
+					- <!--Case Name-->
+				</h1>
+				<h1 class="hidden" id="no-case">No case found</h1>
+			</div>
+		</div>
+		<main>
+			<div class="inner">
+				<div id="case-body" class="hidden body-wrap right-on-top">
+					<div class="body-left">
+						<div id="pdf">
+							<div id="adobe-dc-view"></div>
+						</div>
+					</div>
+					<div class="body-right">
+						<div id="case-information" class="on-this-page">
+							<h2>Information</h2>
+							<h3>Cites</h3>
+							<ul id="cites">
+								<li>
+									<a href="/">No Cases</a>
+								</li>
+							</ul>
+
+							<h3>Cited by</h3>
+							<ul id="citedBy">
+								<li>
+									<a href="/">No Cases</a>
+								</li>
+							</ul>
+
+							<h3>Legislation</h3>
+							<ul id="legislation">
+								<li>
+									<a href="/">No Legislation Cited</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+		<footer>
+			<div class="inner">
+				<div id="footer-wrap">
+					<div id="footer-left">&copy; OpenLaw NZ <span>|</span> <a href="https://www.register.charities.govt.nz/Charity/CC55967">Registered NZ Charity</a></div>
+					<div id="footer-right">
+						<div id="supported-by">
+							<p>Supported by</p>
+							<div>
+								<a href="https://www.lawfoundation.org.nz/">
+									<img
+										id="supported-by-law-foundation"
+										src="img/global/law-foundation-logo.svg"
+										alt="The Law Foundation"
+									/> </a
+								><a href="https://www.netlify.com"
+									><img
+										src="https://www.netlify.com/img/global/badges/netlify-dark.svg"
+										alt="Deployed by Netlify"
+								/></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+		<script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+		<script src="js/single-case.js"></script>
+	</body>
+</html>

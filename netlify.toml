@@ -1,0 +1,18 @@
+[build]
+  command="cd functions/search && npm i && cd ../api && npm i "
+  functions = "functions"
+  publish = "public"
+
+[[redirects]]
+  from = "/search"
+  to = "/.netlify/functions/search"
+  status = 200
+  force = true
+  headers = { X-From = "Netlify" }
+
+[[redirects]]
+  from = "/api"
+  to = "/.netlify/functions/api"
+  status = 200
+  force = true
+  headers = { X-From = "Netlify" }
