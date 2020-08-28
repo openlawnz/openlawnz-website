@@ -1,7 +1,7 @@
 const urlParams = new URLSearchParams(window.location.search);
 const searchQuery = urlParams.get("q");
-const caseLocation = urlParams.get("court") || '';
-const legislation = urlParams.get("legislation") || '';
+const court = urlParams.get("court") || '';
+const caseLocation = urlParams.get("location") || '';
 
 function paginate(totalItems, currentPage, pageSize, maxPages) {
 	// calculate total pages
@@ -97,9 +97,9 @@ function setPagination(count, currentPage) {
 
 
 }
-async function getSearch(query, purifiedLocation, purifiedLegislation, page) {
+async function getSearch(query, purifiedLocation, caseLocation, page) {
 	offset = page < 1 ? 1 : page
-	const searchResults = await fetch(`/search?q=${query}&p=${(offset - 1) * 10}&court='${purifiedLocation}'&legislation='${purifiedLegislation}'`)
+	const searchResults = await fetch(`/search?q=${query}&p=${(offset - 1) * 10}&court='${purifiedLocation}'&location='${caseLocation}'`)
 
 	const { count, results } = await searchResults.json();
 	if(!results) return
@@ -125,14 +125,14 @@ async function getSearch(query, purifiedLocation, purifiedLegislation, page) {
 
 function search(page) {
 	const purifiedSearchQuery = DOMPurify.sanitize(searchQuery);
+	const purifiedCourt = DOMPurify.sanitize(court);
 	const purifiedLocation = DOMPurify.sanitize(caseLocation);
-	const purifiedLegislation = DOMPurify.sanitize(legislation);
 
-	getSearch(purifiedSearchQuery, purifiedLocation, purifiedLegislation, page)
-}
+	document.getElementById("q-advanced").value = purifiedSearchQuery;
+	document.getElementById("court").value = purifiedCourt;
+	document.getElementById("location").value = purifiedLocation;
 
-function advancedSearch() {
-	document.location.href = `/search.html?q=${searchQuery}&court=${document.getElementById("court").value}&legislation=${document.getElementById("legislation").value}`;
+	getSearch(purifiedSearchQuery, purifiedCourt, purifiedLocation, page)
 }
 
 window.onload = () => {

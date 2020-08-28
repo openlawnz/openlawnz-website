@@ -78,18 +78,29 @@
 					<div class="body-right">
 						<div id="advanced-search" class="on-this-page">
 							<h2>Advanced</h2>
-							<form id="advanced-search">
+							<form method="get" action="search.html" id="advanced-search">
+								<div>
+									<label for="q">Search Term</label>
+									<input type="text" name="q" id="q-advanced" />
+								</div>
 								<div>
 									<label for="court">Court</label>
-									<input type="text" name="court" id="court" />
+									<select name="court" id="court">
+										<option></option>
+										<option>Court of Appeal</option>
+										<option>District Court</option>
+										<option>High Court</option>
+										<option>Supreme Court</option>
+
+									</select>
 								</div>
 								<div>
-									<label for="legislation">Legislation</label>
-									<input type="text" name="legislation" id="legislation" />
+									<label for="location">Location</label>
+									<input type="text" name="location" id="location" />
 								</div>
-								
+								<button class="advanced-search-button">Search</button>
 							</form>
-							<button class="advanced-search-button" onclick="advancedSearch()">Search</button>
+							
 							
 						</div>
 						<div id="case-information">

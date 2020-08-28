@@ -14,7 +14,7 @@ class AzureSearchClient {
 
     getIndexUrl() { return `https://${this.searchServiceName}.search.windows.net/indexes/${this.indexName}?api-version=${this.apiVersion}`; }
     
-    getSearchUrl(searchTerm, offset) { return `https://${this.searchServiceName}.search.windows.net/indexes/${this.indexName}/docs?api-version=${this.apiVersion}&$select=fileKey,caseCitations,caseNames,caseDate&highlight=caseText-1&$top=10&$skip=${offset}&$count=true&search=${searchTerm}&searchMode=all`; }
+    getSearchUrl(searchTerm, offset) { return `https://${this.searchServiceName}.search.windows.net/indexes/${this.indexName}/docs?api-version=${this.apiVersion}&$select=fileKey,caseCitations,caseNames,caseDate&highlight=caseText-1&$top=10&$skip=${offset}&$count=true&search=${searchTerm}&searchMode=all&queryType=full`; }
     
     static async request(url, method, apiKey, bodyJson = null) {
         // Uncomment the following for request details:
@@ -61,13 +61,12 @@ class AzureSearchClient {
         return exists;
     }
     
-    async queryAsync(searchTerm, offset, caseLocation, legislation) {
+    async queryAsync(searchTerm, offset, court, caseLocation) {
         console.log(`\n Querying... Term: ${searchTerm}, Offset: ${offset}, Case Location ${caseLocation}`)
             
-        // let params = ""
-        // if(caseLocation !== '') params = params + `caseLocation: ${caseLocation}`
-        // if(legislation !== '') params = params + `caseLocation: ${caseLocation}`
-
+        if(caseLocation !== '') searchTerm = searchTerm + ` caseLocation:${caseLocation}`
+        if(court !== '') searchTerm = searchTerm + ` court:"${court}"`
+        
         const endpoint = this.getSearchUrl(searchTerm, offset);
 
         const response = await AzureSearchClient.request(endpoint, "GET", this.queryKey);
