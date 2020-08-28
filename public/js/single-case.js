@@ -35,7 +35,7 @@ document.addEventListener("adobe_dc_view_sdk.ready", async function () {
 			const cites = casesCitedsByCaseOrigin.map(({caseByCaseCited}) => `<li><a href="/single-case.html?case=${caseByCaseCited.caseCitations[0].id}">${caseByCaseCited.caseName}</a></li>`)
 			document.getElementById("cites").innerHTML = cites.join('');
 		}
-		if(legislationToCases) {
+		if(legislationToCases.length !== 0) {
 			const legislationLinks = legislationToCases.map(({legislation, section}) => `<li><a href="http://legislation.govt.nz${legislation.link}">${legislation.title}, ${section}</a></li>`)
 			document.getElementById("legislation").innerHTML = legislationLinks.join('');
 		}
