@@ -68,7 +68,7 @@ class AzureSearchClient {
         if(court !== '') searchTerm = searchTerm + ` court:"${court}"`
         
         const endpoint = this.getSearchUrl(searchTerm, offset);
-
+        
         const response = await AzureSearchClient.request(endpoint, "GET", this.queryKey);
         AzureSearchClient.throwOnHttpError(response);
         return response;

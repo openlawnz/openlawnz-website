@@ -100,6 +100,7 @@ function setPagination(count, currentPage) {
 }
 async function getSearch(query, purifiedLocation, caseLocation, page) {
 	offset = page < 1 ? 1 : page
+	
 	const searchResults = await fetch(`/search?q=${query}&p=${(offset - 1) * 10}&court='${purifiedLocation}'&location='${caseLocation}'`)
 
 	const { count, results } = await searchResults.json();
