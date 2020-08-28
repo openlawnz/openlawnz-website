@@ -23,7 +23,7 @@ exports.handler = async(event) => {
         );
 
         try {
-            const result = await client.queryAsync(`${sanitizeString(event.queryStringParameters.q)}`, `${sanitizeString(event.queryStringParameters.p)}`, `${sanitizeString(event.queryStringParameters.court || '')}`, `${sanitizeString(event.queryStringParameters.legislation || '')}`).then(r => r.json());
+            const result = await client.queryAsync(`${sanitizeString(event.queryStringParameters.q)}`, `${sanitizeString(event.queryStringParameters.p)}`, `${sanitizeString(event.queryStringParameters.court || '')}`, `${sanitizeString(event.queryStringParameters.location || '')}`).then(r => r.json());
             return {
                 statusCode: 200,
                 body: JSON.stringify({
