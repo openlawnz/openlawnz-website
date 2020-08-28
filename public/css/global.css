@@ -188,6 +188,10 @@ main .inner {
 	#hero .inner h1 {
 		font-size: 40px;
 		color: #a36633;
+		background: rgba(255, 255, 255, 0.7);
+		padding: 10px;
+		box-sizing: border-box;
+		border-radius: 5px;
 	}
 }
 
