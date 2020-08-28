@@ -29,6 +29,7 @@
 #advanced-search {
 	max-width: 270px;
 }
+
 #advanced-search div {
 	display: flex;
 	margin-top: 10px;
@@ -38,6 +39,16 @@
 	display: block;
 	width: 100px;
 }
+
+#advanced-search select, input {
+	width: 180px;
+	padding: 1px 2px;
+	-ms-box-sizing:content-box;
+	-moz-box-sizing:content-box;
+	-webkit-box-sizing:content-box; 
+	box-sizing:content-box;
+}
+
 
 #pagination .current-page {
 	background: #a36633;
@@ -72,8 +83,4 @@
 	padding: 2px;
 	margin-top: 5px;
 	float: right;
-}
-
-#court { 
-	width: 190px;
 }
