@@ -26,6 +26,10 @@
 	font-weight: bold;
 }
 
+#search-tips li {
+	margin-top: 10px;
+}
+
 #advanced-search {
 	max-width: 270px;
 }
