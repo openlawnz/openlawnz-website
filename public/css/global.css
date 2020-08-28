@@ -282,6 +282,13 @@ h4.body-title {
 .content-section li {
 	font-size: 19px;
 	color: #393939;
+	
+}
+
+.content-section > p,
+.content-section li {
+	
+	text-align: justify;
 }
 
 .on-this-page {
