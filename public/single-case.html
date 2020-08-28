@@ -1,9 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-147450154-1"></script>
+		<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-147450154-1');
+		</script>
+
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title></title>
+		<title>OpenLaw NZ</title>
 		<link
 			href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap"
 			rel="stylesheet"
@@ -31,9 +41,9 @@
 							Search
 						</button>
 					</div>
-					<div id="search-options">
+					<!-- <div id="search-options">
 						<a href="search.html">Advanced Search</a>
-					</div>
+					</div> -->
 				</form>
 			</div>
 		</header>
@@ -59,24 +69,32 @@
 							<h3>Cites</h3>
 							<ul id="cites">
 								<li>
-									<a href="/">No Cases</a>
+									No cites
 								</li>
 							</ul>
 
 							<h3>Cited by</h3>
 							<ul id="citedBy">
 								<li>
-									<a href="/">No Cases</a>
+									No cited by
 								</li>
 							</ul>
 
 							<h3>Legislation</h3>
 							<ul id="legislation">
 								<li>
-									<a href="/">No Legislation Cited</a>
+									No Legislation Cited
 								</li>
 							</ul>
+
+							<div id="disclaimer">
+								<h2>Disclaimer</h2>
+								<p>This data is automatically extracted from PDF files. While OpenLaw NZ makes every effort to provide accurate data, it is not something we can guarantee.</p>
+								<p>You can view the OpenLaw NZ source code on <a href="https://github.com/openlawnz">Github</a></p>
+							</div>
+							
 						</div>
+
 					</div>
 				</div>
 			</div>

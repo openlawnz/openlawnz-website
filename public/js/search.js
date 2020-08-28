@@ -2,6 +2,7 @@ const urlParams = new URLSearchParams(window.location.search);
 const searchQuery = urlParams.get("q");
 const court = urlParams.get("court") || '';
 const caseLocation = urlParams.get("location") || '';
+let searchResultsTable;
 
 function paginate(totalItems, currentPage, pageSize, maxPages) {
 	// calculate total pages
@@ -106,7 +107,11 @@ async function getSearch(query, purifiedLocation, caseLocation, page) {
 
 	setPagination(count, page)
 	
-	if(results.length === 0) return
+	if(results.length === 0) {
+		searchResultsTable.style.display = 'none';
+	} else {
+		searchResultsTable.style.display = 'block';
+	}
 	const searchTableContent = results.map(({caseCitation, caseName, caseDate, highlights}) => {
 		const highlightText = highlights.caseText[0];
 		return (
@@ -137,6 +142,7 @@ function search(page) {
 
 window.onload = () => {
 	const queryEl = document.getElementById("query");
+	searchResultsTable = document.getElementById("search-results-table");
 
 	if (searchQuery) {
 		const purifiedSearchQuery = DOMPurify.sanitize(searchQuery);
