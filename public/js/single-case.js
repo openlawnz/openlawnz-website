@@ -20,9 +20,6 @@ document.addEventListener("adobe_dc_view_sdk.ready", async function () {
 		const caseData = await getCase();
 
 		const { id, caseName, legislationToCases, casesCitedsByCaseCited, casesCitedsByCaseOrigin } = caseData
-
-		// let casesCited = []
-		// let casesCitedBy = []
 		
 		document.getElementById("has-case").innerHTML = caseName;
 

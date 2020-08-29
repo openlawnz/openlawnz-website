@@ -2,12 +2,6 @@ const fetch = require("node-fetch")
 
 exports.handler = async function(event, context) {
 
-
-  //Request should be sent through the correct redirect
-  if (event.headers['sec-fetch-site'] !== 'same-origin') return {
-    statusCode: 400
-  }
-
   const caseCitation = event.queryStringParameters.case
   const { API_SECRET, API_URL } = process.env
   try {

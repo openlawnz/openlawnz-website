@@ -9,9 +9,6 @@ exports.handler = async(event) => {
 
     //const stage = event.requestContext.stage;
     //Request should be sent through the correct redirect
-    if (event.headers['sec-fetch-site'] !== 'same-origin') return {
-        statusCode: 400,
-    }
 
     if (event.queryStringParameters && event.queryStringParameters.q) {
         const client = new AzureSearchClient(
