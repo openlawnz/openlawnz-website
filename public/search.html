@@ -114,8 +114,14 @@
 									Search for phrases using quotes <code>""</code>.
 								</li>
 								<li>
-									Combine terms or phases with AND, OR, and NOT
+									Combine terms or phases with AND, OR, and NOT.
 								</li>
+								<li>
+									Make a search term fuzzy by adding <code>~</code> at the end: for example <code>"rescu~"</code>. Optionally specify a number to control how fuzzy (for example, <code>"rescu~3"</code>).
+								</li>
+								<li>
+									Proximity search by adding <code>~</code> after a phrase: for example <code>"pre report"~2</code> will find "pre-sentence report".
+								</li>								
 								<li>
 									<a href="/how-to-use#using-search">See more tips</a>
 								</li>
