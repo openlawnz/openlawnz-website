@@ -1,14 +1,13 @@
 const AzureSearchClient = require('./AzureSearchClient.js');
 
 function sanitizeString(str) {
-    str = str.replace(/[^a-z0-9áéíóúñü \.,_-]/gim, "");
+    str = str.replace(/[^a-z0-9áéíóúñü~" \.,_-]/gim, "");
     return str.trim();
 }
 
 exports.handler = async(event) => {
 
     //const stage = event.requestContext.stage;
-
     //Request should be sent through the correct redirect
     if (event.headers['sec-fetch-site'] !== 'same-origin') return {
         statusCode: 400,

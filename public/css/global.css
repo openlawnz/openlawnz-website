@@ -57,6 +57,16 @@ header {
 	background: #2a5f64;
 }
 
+code {
+    border-radius: 5px; 
+    -moz-border-radius: 5px; 
+    -webkit-border-radius: 5px; 
+    border: 1px solid #BCBEC0;
+    padding: 2px;
+	font:12px Monaco,Consolas,"Andale  Mono","DejaVu Sans Mono",monospace;
+	background: #EAEAEA
+}
+
 header .inner {
 	display: flex;
 	align-items: center;
