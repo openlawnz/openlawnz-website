@@ -117,11 +117,20 @@
 									Combine terms or phases with AND, OR, and NOT.
 								</li>
 								<li>
-									Make a search term fuzzy by adding <code>~</code> at the end: for example <code>"rescu~"</code>. Optionally specify a number to control how fuzzy (for example, <code>"rescu~3"</code>).
+									 Default connector is OR: <code>auckland helicopter</code> searches for <code>auckland OR helicopter</code>.
+								</li>								
+								<li>
+									Make a search term fuzzy by adding <code>~</code> at the end: <code>"rescu~"</code>. 
 								</li>
 								<li>
-									Proximity search by adding <code>~</code> after a phrase: for example <code>"pre report"~2</code> will find "pre-sentence report".
+									Optionally specify a number to control how fuzzy (for example, <code>"rescu~3"</code>).
 								</li>								
+								<li>
+									Proximity search by adding <code>~</code> and a number after a phrase.
+								</li>								
+								<li>
+									<code>"pre report"~2</code> will find "pre-sentence report".
+								</li>	
 								<li>
 									<a href="/how-to-use#using-search">See more tips</a>
 								</li>
