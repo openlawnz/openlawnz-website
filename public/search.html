@@ -57,13 +57,13 @@
 				<div class="body-wrap right-on-top">
 					<div class="body-left">
 						<div id="search-body" class="hidden">							
-							<table id="search-results-table">
+							<table id="search-results-table" class="hidden">
 								<thead>
 									<tr>
-										<th>Case name</th>
-										<th>Citation</th>
-										<th>Date</th>
-										<th>Snippet</th>
+										<th class="case-name-column">Case name</th>
+										<th class="citation-column">Citation</th>
+										<th class="date-column">Date</th>
+										<th class="snippet-column">Snippet</th>
 									</tr>
 								</thead>
 								<tbody id="search-results-table-body">
@@ -114,8 +114,20 @@
 									Search for phrases using quotes <code>""</code>.
 								</li>
 								<li>
-									Combine terms or phases with AND, OR, and NOT
+									Combine terms or phases with AND, OR, and NOT.
 								</li>
+								<li>
+									 Default connector is OR: <code>auckland helicopter</code> searches for <code>auckland OR helicopter</code>.
+								</li>								
+								<li>
+									Make a search term fuzzy by adding <code>~</code> at the end: <code>"rescu~"</code>. 
+								</li>			
+								<li>
+									Proximity search by adding <code>~</code> and a number after a phrase.
+								</li>								
+								<li>
+									<code>"pre report"~2</code> will find "pre-sentence report".
+								</li>	
 								<li>
 									<a href="/how-to-use#using-search">See more tips</a>
 								</li>
