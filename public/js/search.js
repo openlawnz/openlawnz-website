@@ -109,19 +109,19 @@ async function getSearch(query, purifiedLocation, caseLocation, page) {
 	setPagination(count, page)
 	
 	if(results.length === 0) {
-		searchResultsTable.style.display = 'none';
+		searchResultsTable.classList.add('hidden');
 	} else {
-		searchResultsTable.style.display = 'block';
+		searchResultsTable.classList.remove('hidden');
 	}
 	const searchTableContent = results.map(({caseCitation, caseName, caseDate, highlights}) => {
 		const highlightText = highlights.caseText[0];
 		return (
 			`
 			<tr>
-				<td><a href="single-case.html?case=${caseCitation.id}">${caseName}</a></td>
-				<td>${caseCitation.citation}</td>
+				<td class="case-name-column"><a href="single-case.html?case=${caseCitation.id}">${caseName}</a></td>
+				<td class="citation-column">${caseCitation.citation}</td>
 				<td class="date-column">${caseDate.substring(0,10)}</td>
-				<td>${highlightText.length > 300 ? highlightText.substring(0,300) + '...' : highlightText}</td>
+				<td class="snippet-column">${highlightText.length > 300 ? highlightText.substring(0,300) + '...' : highlightText}</td>
 			</tr>
 			`
 		)

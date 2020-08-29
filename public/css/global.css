@@ -10,6 +10,18 @@
 	}
 }
 
+/* Remove iOS styling */
+
+textarea,
+input.text,
+input[type="text"],
+input[type="button"],
+input[type="submit"],
+.input-checkbox {
+	-webkit-appearance: none;
+	border-radius: 0;
+}
+
 body {
 	margin: 0;
 	font-family: "Source Sans Pro", sans-serif;
@@ -46,13 +58,15 @@ header {
 }
 
 code {
-    border-radius: 5px; 
-    -moz-border-radius: 5px; 
-    -webkit-border-radius: 5px; 
-    border: 1px solid #BCBEC0;
-    padding: 2px;
-	font:12px Monaco,Consolas,"Andale  Mono","DejaVu Sans Mono",monospace;
-	background: #EAEAEA
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border: 1px solid #bcbec0;
+	padding: 2px;
+	font-size: 12px;
+	font-family: "Courier New", Courier, monospace;
+	background: #eaeaea;
+	white-space: nowrap;
 }
 
 header .inner {
@@ -296,19 +310,22 @@ h4.body-title {
 .content-section li {
 	font-size: 19px;
 	color: #393939;
-	
 }
 
 .content-section > p,
 .content-section li {
-	
 	text-align: justify;
 }
 
 .on-this-page {
-	position: sticky;
-	top: 30px;
 	margin-top: var(--margin-top-between-sections);
+}
+
+@media only screen and (min-width: 960px) {
+	.on-this-page {
+		position: sticky;
+		top: 30px;
+	}
 }
 
 .on-this-page h2 {

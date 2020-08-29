@@ -26,6 +26,20 @@
 	font-weight: bold;
 }
 
+.citation-column,
+.case-name-column {
+	white-space: nowrap;
+}
+
+@media only screen and (max-width: 960px) {
+	#search-body {
+		overflow: auto;
+	}
+	.snippet-column {
+		display: none;
+	}
+}
+
 #search-tips li {
 	margin-top: 10px;
 }
