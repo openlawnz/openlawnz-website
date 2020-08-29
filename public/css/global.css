@@ -58,13 +58,15 @@ header {
 }
 
 code {
-    border-radius: 5px; 
-    -moz-border-radius: 5px; 
-    -webkit-border-radius: 5px; 
-    border: 1px solid #BCBEC0;
-    padding: 2px;
-	font:12px Monaco,Consolas,"Andale  Mono","DejaVu Sans Mono",monospace;
-	background: #EAEAEA
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border: 1px solid #bcbec0;
+	padding: 2px;
+	font-size: 12px;
+	font-family: "Courier New", Courier, monospace;
+	background: #eaeaea;
+	white-space: nowrap;
 }
 
 header .inner {
@@ -325,7 +327,6 @@ h4.body-title {
 		top: 30px;
 	}
 }
-
 
 .on-this-page h2 {
 	margin: 0 0 15px 0;
