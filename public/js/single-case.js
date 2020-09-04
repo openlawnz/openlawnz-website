@@ -24,7 +24,8 @@ document.addEventListener("adobe_dc_view_sdk.ready", async function () {
 		document.getElementById("has-case").innerHTML = caseName;
 
 		if(casesCitedsByCaseCited.length !== 0) {
-			const citedBy = casesCitedsByCaseCited.map(({caseByCaseOrigin}) => `<li><a href="/single-case.html?case=${caseByCaseOrigin.caseCitations[0].id}">${caseByCaseOrigin.caseName}</a></li>`)
+			//Case will be hidden if it cites a case with no citation record. This should be fixed in the pipeline in future
+			const citedBy = casesCitedsByCaseCited.map(({caseByCaseOrigin}) => caseByCaseOrigin.caseCitations.length > 0 ? `<li><a href="/single-case.html?case=${caseByCaseOrigin.caseCitations[0].id}">${caseByCaseOrigin.caseName}</a></li>` : '')
 			document.getElementById("citedBy").innerHTML = citedBy.join('');
 		}
 
