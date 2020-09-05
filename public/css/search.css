@@ -26,9 +26,12 @@
 	font-weight: bold;
 }
 
-.citation-column,
+.citation-column {
+	width: 200px;
+}
+
 .case-name-column {
-	white-space: nowrap;
+	width: 500px; 
 }
 
 @media only screen and (max-width: 960px) {
