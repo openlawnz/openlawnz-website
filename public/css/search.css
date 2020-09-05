@@ -31,7 +31,8 @@
 }
 
 .case-name-column {
-	width: 500px; 
+	max-width: 500px; 
+	min-width: 300px;
 }
 
 @media only screen and (max-width: 960px) {
