@@ -40,8 +40,14 @@
 	}
 }
 
-#search-tips li {
+#search-tips-header {
+	margin-top: 40px;
+}
+
+#search-tips li {	
+	list-style: initial;
 	margin-top: 10px;
+	margin-left: 40px;
 }
 
 #advanced-search {
