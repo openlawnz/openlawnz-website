@@ -38,6 +38,27 @@ p {
 	display: none;
 }
 
+/* Makes an element visually hidden, but still accessible to keyboards and assistive devices. */
+.show-for-sr {
+	position: absolute !important;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	clip-path: inset(50%);
+	border: 0;
+}
+.show-for-sr:focus {
+	padding: 5px;
+	width: auto;
+	width: auto;
+	clip: auto !important;
+	border-radius: 3px;
+	background: lavender;
+}
+
 .primary-button {
 	display: inline-block;
 	background: #a36633;
