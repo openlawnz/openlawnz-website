@@ -149,12 +149,43 @@
 	color: #393939;
 }
 
+.contact-form {
+	width: 475px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+.contact-form input {
+	width: 220px;
+	margin-bottom: 5px;
+	padding: 5px;
+	border: 1px solid black;
+}
+
+.contact-form textarea {
+	margin-bottom: 5px;
+	height: 170px;
+	padding: 5px;
+}
+
+.contact-form button {
+	padding: 5px;
+}
+
 @media only screen and (min-width: 960px) {
 	.explore-segments {
 		grid-template-columns: 1fr 1fr 1fr;
     }
     .directors-segments {
 		grid-template-columns: 1fr 1fr;
+	}
+
+	.contact-form textarea {
+		width: 100%;
+	}
+
+	.contact-form button {
+		width: 100%;
 	}
 }
 
@@ -165,5 +196,14 @@
     
     .directors-segments {
 		grid-template-columns: 1fr;
+	}
+
+	.contact-form {
+		flex-direction: column;
+		width: 100%;
+	}
+
+	.contact-form input {
+		width: 100%;
 	}
 }

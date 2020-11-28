@@ -77,7 +77,7 @@ const HomePage = () => {
 							<p>
 								We'd love to hear feedback and things you have done with the platform
 							</p>
-							<Link to="mailto:enquiries@openlaw.nz" className="primary-button">Get in touch</Link>
+							<a href="mailto:enquiries@openlaw.nz" className="primary-button">Get in touch</a>
 						</div>
 					</div>
 					<div className="body-right">
