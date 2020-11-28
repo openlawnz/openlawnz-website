@@ -1,4 +1,4 @@
-[build]
+[a]
   command="cd functions/search && npm i && cd ../api && npm i "
   functions = "functions"
   publish = "public"
