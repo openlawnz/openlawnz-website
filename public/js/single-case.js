@@ -19,7 +19,7 @@ document.addEventListener("adobe_dc_view_sdk.ready", async function () {
 
 		const caseData = await getCase();
 
-		const { id, caseName, legislationToCases, casesCitedsByCaseCited, casesCitedsByCaseOrigin } = caseData
+		const { id, caseName, legislationToCases, casesCitedsByCaseCited, casesCitedsByCaseOrigin, parsersVersion } = caseData
 		
 		document.getElementById("has-case").innerHTML = caseName;
 
@@ -37,6 +37,8 @@ document.addEventListener("adobe_dc_view_sdk.ready", async function () {
 			const legislationLinks = legislationToCases.map(({legislation, section}) => `<li><a href="http://legislation.govt.nz${legislation.link}">${legislation.title}, ${section}</a></li>`)
 			document.getElementById("legislation").innerHTML = legislationLinks.join('');
 		}
+
+		if(parsersVersion) document.getElementById("parsersVersion").innerHTML = `<p>${parsersVersion}</p>`;
 
 		var adobeDCView = new AdobeDC.View({
 			clientId: "1639f22871dc4d1891119d8833bf473b",
