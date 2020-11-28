@@ -1,4 +1,4 @@
-import { ourMission, getEmpowered, getInvolved, microsites, news, wizards } from "./collections"
+import { news } from "./collections"
 
 import { init } from "netlify-cms-app"
 
@@ -13,12 +13,7 @@ const config = {
     branch: GATSBY_BRANCH || "master",
   },
   collections: [
-    ourMission,
-    getEmpowered,
-    getInvolved,
-    microsites,
     news,
-    wizards,
   ],
   media_folder: "static/assets",
   public_folder: "/assets",

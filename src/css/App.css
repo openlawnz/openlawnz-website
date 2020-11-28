@@ -239,6 +239,13 @@ h4.body-title {
 
 .on-this-page {
 	margin-top: var(--margin-top-between-sections);
+	position: initial;
+}
+
+@media only screen and (max-width: 1200px) {
+	.on-this-page {
+		text-align: center;
+	}
 }
 
 @media only screen and (min-width: 960px) {

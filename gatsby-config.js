@@ -5,6 +5,7 @@ module.exports = {
     author: `OpenLaw NZ`,
   },
   plugins: [
+    "gatsby-transformer-json",
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -55,14 +56,13 @@ module.exports = {
       },
     },
     `gatsby-plugin-react-helmet`,
-    // {
-    //   resolve: `gatsby-plugin-netlify-cms`,
-    //   // options: {
-    //   //   manualInit: true,
-    //   //   modulePath: `${__dirname}/src/cms/cms.js`,
-    //   // },
-    // },
-    `gatsby-plugin-netlify-cms`,
+    {
+      resolve: `gatsby-plugin-netlify-cms`,
+      options: {
+        manualInit: true,
+        modulePath: `${__dirname}/src/cms/cms.js`,
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
