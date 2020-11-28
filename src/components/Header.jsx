@@ -2,7 +2,7 @@ import React from "react"
 import Logo from "../images/global/logo.svg"
 import { Link } from "gatsby"
 
-import "../css/header.css"
+import "../css/Header.css"
 
 
 const Header = () => (

@@ -1,5 +1,5 @@
 import React from "react"
-import "../css/footer.css"
+import "../css/Footer.css"
 
 import lawFoundationLogo from "../images/global/law-foundation-logo.svg"
 
