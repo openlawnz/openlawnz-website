@@ -55,6 +55,14 @@ module.exports = {
       },
     },
     `gatsby-plugin-react-helmet`,
+    // {
+    //   resolve: `gatsby-plugin-netlify-cms`,
+    //   // options: {
+    //   //   manualInit: true,
+    //   //   modulePath: `${__dirname}/src/cms/cms.js`,
+    //   // },
+    // },
+    `gatsby-plugin-netlify-cms`,
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
