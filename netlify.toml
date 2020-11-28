@@ -1,5 +1,5 @@
-[a]
-  command="cd functions/search && npm i && cd ../api && npm i "
+[build]
+  command="cd functions/search && npm i && cd ../api && npm i && cd../../ && gatsby build"
   functions = "functions"
   publish = "public"
 
