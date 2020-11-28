@@ -20,16 +20,19 @@ const NotFoundPage = ({ data }) => {
                   </p>
 
                   <form className="contact-form" name="contact" method="POST" netlify data-netlify="true">
-                      <label htmlFor="name" className="show-for-sr">Your Name: </label>    
-                      <input placeholder="Name" type="text" name="name" />
+                    <input type="hidden" name="bot-field" />
+                    <input type="hidden" name="form-name" value="contact" />
+                    
+                    <label htmlFor="name" className="show-for-sr">Your Name: </label>    
+                    <input placeholder="Name" type="text" name="name" />
 
-                      <label htmlFor="email" className="show-for-sr">Your Email: </label>
-                      <input placeholder="Email" type="email" name="email" />
+                    <label htmlFor="email" className="show-for-sr">Your Email: </label>
+                    <input placeholder="Email" type="email" name="email" />
 
-                      <label htmlFor="message" className="show-for-sr">Message: </label> 
-                      <textarea placeholder="Message" name="message"></textarea>
+                    <label htmlFor="message" className="show-for-sr">Message: </label> 
+                    <textarea placeholder="Message" name="message"></textarea>
 
-                      <button type="submit">Send</button>
+                    <button type="submit">Send</button>
                   </form>
               </div>
             </div>
