@@ -9,6 +9,7 @@ exports.handler = async function(event, context) {
       case {
         caseName
         id
+        parsersVersion
         caseCitations {
           citation
         }
