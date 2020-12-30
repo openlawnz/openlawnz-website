@@ -14,9 +14,9 @@ const CasePage = (props) => {
     const caseId = props['*'] || "No case"
 
     const adobeUIConfig = {
-        showLeftHandPanel: true,
         showDownloadPDF: true,
         showPrintPDF: true,
+        embedMode: "IN_LINE"
     }
     useEffect(() => {
        (async () => {
@@ -27,8 +27,6 @@ const CasePage = (props) => {
             setCurrentCase(caseData.data.caseCitation.case)
        })()
    }, [caseId, setCurrentCase])
-
-   console.log(currentCase)
 
    const adobeDCViewerCallback = () => {
      setAdobeDCView(

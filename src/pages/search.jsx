@@ -20,7 +20,6 @@ const SearchPage = () => {
 
     useEffect(() => {
        (async () => {
-           console.log(`/search-cases?q=${query || '""'}&p=${page * 10 || 0}&court='${court || ''}'&location='${location || ''}'`)
            const res = await fetch(`/search-cases?q=${query || '""'}&p=${page * 10 || 0}&court='${court || ''}'&location='${location || ''}'`)
 
            const cases = await res.json()
