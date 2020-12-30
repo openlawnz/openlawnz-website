@@ -57,7 +57,7 @@ const HomePage = () => {
 						<div className="explore">
 							<h2 className="body-title">Explore OpenLaw NZ</h2>
 							<div className="explore-segments">
-								<Link to="/how-to-use.html">
+								<Link to="/how-to-use	">
 									<img src={howToUseImage} alt="" />
 									<p>How to use OpenLaw NZ</p>
 								</Link>
@@ -65,7 +65,7 @@ const HomePage = () => {
 									<img src={ourMissionImage} alt="" />
 									<p>Our mission</p>
 								</Link>
-								<Link to="blog.html">
+								<Link to="/blog">
 									<img src={blogImage} alt="" />
 									<p>Our blog</p>
 								</Link>
@@ -85,17 +85,17 @@ const HomePage = () => {
 							<h2>Blog</h2>
 							<ul>
 								<li>
-									<Link to="blog.html#openlaw-nz-receives-law-foundation-grant"
+									<Link to="blog#openlaw-nz-receives-law-foundation-grant"
 										>OpenLaw NZ Receives Law Foundation Grant
                                     </Link>
 								</li>
 								<li>
-									<Link to="blog.html#openlaw-nz-launches-new-website">
+									<Link to="blog#openlaw-nz-launches-new-website">
 										OpenLaw NZ launches new website
 									</Link>
 								</li>
 								<li>
-									<Link to="blog.html#amazing-response-to-call-for-volunteers">
+									<Link to="blog#amazing-response-to-call-for-volunteers">
 										Amazing response to call for volunteers
 									</Link>
 								</li>
