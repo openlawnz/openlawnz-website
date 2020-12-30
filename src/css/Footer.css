@@ -1,0 +1,58 @@
+
+footer {
+	margin-top: 70px;
+	background: #2f6267;
+	color: #fff;
+}
+
+footer p,
+footer a {
+	color: #fff;
+}
+
+footer .inner {
+	padding: 50px 30px;
+}
+
+#footer-wrap {
+	display: flex;
+	justify-content: space-between;
+}
+
+#footer-left span {
+	display: inline-block;
+	margin: 0 5px;
+}
+
+#supported-by {
+	display: flex;
+}
+
+#supported-by p {
+	margin: 0;
+	color: #fff;
+}
+
+#supported-by div {
+	margin-left: 15px;
+	display: flex;
+	flex-direction: column;
+}
+
+#supported-by img {
+	display: block;
+}
+
+#supported-by-law-foundation {
+	width: 92px;
+	margin-bottom: 5px;
+}
+
+@media only screen and (max-width: 960px) {
+	#footer-wrap {
+		flex-direction: column;
+	}
+	#supported-by {
+		margin-top: 45px;
+	}
+}

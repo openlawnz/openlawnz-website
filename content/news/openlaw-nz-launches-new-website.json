@@ -1,0 +1,22 @@
+{
+  "data": "2019-09-13T23:08:05.417Z",
+  "title": "OpenLaw NZ launches new website",
+  "text": [
+    {
+      "content_html": "With the help of our awesome volunteer team, today we launch our website redesign!",
+      "title": "With the help of our awesome volunteer team, today we launch our website redesign!"
+    },
+    {
+      "content_html": "The new website adds a much improved design and user interface. The site is also responsive, which makes it much easier to use on a mobile device. The search functionality has been upgraded to add pagination, and a new case display page.",
+      "title": "The new website adds a much improved design and user interface"
+    },
+    {
+      "content_html": "We've also been working behind the scenes with our case law API and data pipeline. We have upgraded the API technology (including a new interface that allows you to explore API queries), added automatic extraction of Court information, overhauled our case to legislation algorithm, and migrated our database from mySQL to PostgreSQL.",
+      "title": "We've also been working behind the scenes with our case law API"
+    },
+    {
+      "content_html": "All credit goes to our current volunteers: April Liau for the designs, Blaine Western leading the front end web team (including Caio Navarro, Tian Bai, and Hanbyul Son), our API expert Noel Soong, and our data parsing and devops volunteers Ed Haslam, Alex Chan, and Limei Wang.",
+      "title": "All credit goes to our current volunteers"
+    }
+  ]
+}

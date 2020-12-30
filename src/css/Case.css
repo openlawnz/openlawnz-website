@@ -1,0 +1,20 @@
+#pdf {
+    margin-top: var(--margin-top-between-sections);
+}
+
+#disclaimer {
+	margin-top: 45px;
+	border: 1px solid #2a5f64;
+	padding: 5px;
+	text-align: justify;
+	width: 80%;
+}
+
+#disclaimer h2 {
+	font-size: 16px;
+	margin: 0;
+}
+
+#disclaimer p {
+	font-size: 12px;
+}

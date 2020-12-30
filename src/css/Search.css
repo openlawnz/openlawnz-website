@@ -1,0 +1,147 @@
+#search-results-table {
+	margin-top: var(--margin-top-between-sections);
+	border-spacing: 0;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+#search-results-table th,
+#search-results-table td {
+	border: 1px solid #393939;
+	padding: 5px;
+}
+
+#search-results-table th {
+	background: #393939;
+	text-align: left;
+	color: #fff;
+}
+
+#search-results-table .date-column {
+	white-space: nowrap;
+}
+
+#search-results-table em {
+	color: #2f6267;
+	font-weight: bold;
+}
+
+.citation-column {
+	width: 200px;
+}
+
+.case-name-column {
+	max-width: 500px; 
+	min-width: 300px;
+}
+
+@media only screen and (max-width: 960px) {
+	#search-body {
+		overflow: auto;
+	}
+	.snippet-column {
+		display: none;
+	}
+}
+
+#search-tips-header {
+	margin-top: 40px;
+}
+
+#search-tips li {	
+	list-style: initial;
+	margin-top: 10px;
+	margin-left: 40px;
+}
+
+#advanced-search {
+	max-width: 270px;
+}
+
+#advanced-search div {
+	display: flex;
+	margin-top: 10px;
+}
+
+#advanced-search div label {
+	display: block;
+	width: 100px;
+}
+
+#advanced-search select, input {
+	width: 180px;
+	padding: 1px 2px;
+	-ms-box-sizing:content-box;
+	-moz-box-sizing:content-box;
+	-webkit-box-sizing:content-box; 
+	box-sizing:content-box;
+}
+
+
+#pagination .current-page {
+	background: #a36633;
+	color: white;
+	border-radius: 3px;
+}
+
+#pagination a {
+	color: #3d3d3d;
+	display: inline-block;
+	font-size: 14px;
+	font-weight: bold;
+	padding: 5px 10px;
+	cursor: pointer	;
+	text-decoration: none;
+}
+
+#pagination ul {
+	display: flex;
+    padding: 0;
+    float: right;
+}
+
+#pagination ul li {
+	margin-left: 8px;
+	border-radius: 3px;
+	background: none;
+	list-style: none;
+}
+
+.advanced-search-button {
+	padding: 2px;
+	margin-top: 5px;
+	float: right;
+}
+
+.pagination {
+    display: inline-block;
+}
+.pagination li {
+    display: inline-block;
+    padding: 5px 10px;
+    
+    cursor: pointer;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                            supported by Chrome, Edge, Opera and Firefox */
+}
+.pagination a {
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.pagination a:focus {
+    outline: none;
+}
+
+#pagination .active a {
+    background-color: #a36633;
+    color: white;
+}
+
+.active {
+    color: white;
+}
