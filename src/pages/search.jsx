@@ -30,7 +30,7 @@ const SearchPage = () => {
     const handleAdvancedSearch = (event) => {
         event.preventDefault()
 
-        navigate(`/search?q=${newQuery}&p=${0}&court=${newCourt}&location=${newLocation}`)
+        navigate(`/search?q=${newQuery || ''}&p=${0}&court=${newCourt || ''}&location=${newLocation || ''}`)
     }
     
     const noResults =  <tr className="no-results-found"> 
