@@ -4,7 +4,6 @@ import { Link, navigate } from "gatsby"
 
 import "../css/Header.css"
 
-
 const Header = () => {
     const [ query, setQuery ] = React.useState('')
     return (
@@ -19,10 +18,10 @@ const Header = () => {
                     <Link to="/blog" activeClassName="active">Blog</Link>
                 </nav>
                 <form method="get" onSubmit={(e) => {
-                    e.preventDefault()
+                        e.preventDefault()
 
-                    navigate(`/search?q=${query}`)
-                }}>
+                        navigate(`/search?q=${query}`)
+                    }}>
                     <div id="search-simple">
                         <label className="show-for-sr" htmlFor="top-search">Search 30k cases</label>
                         <input type="search" placeholder="Search 30k cases" name="q" id="top-search" value={query} onChange={e => setQuery(e.target.value)} required />
