@@ -31,7 +31,7 @@ const Header = () => {
                         </button>
                     </div>
                     <div id="search-options">
-                        <Link to="/search2">Advanced Search</Link>
+                        <Link to="/search">Advanced Search</Link>
                     </div>
                 </form>
             </div>
