@@ -73,4 +73,6 @@ functions/api/node_modules/
 # Local Netlify folder
 .netlify
 
+.vscode
+
 **/.DS_Store

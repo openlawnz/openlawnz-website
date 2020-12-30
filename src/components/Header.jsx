@@ -16,7 +16,7 @@ const Header = () => (
                 <Link to="/how-to-use" activeClassName="active">How to Use</Link>
                 <Link to="/blog" activeClassName="active">Blog</Link>
             </nav>
-            <form method="get" action="search.html">
+            <form method="get" action="search">
                 <div id="search-simple">
                     <label className="show-for-sr" htmlFor="top-search">Search 30k cases</label>
                     <input type="search" placeholder="Search 30k cases" name="q" id="top-search" required />
@@ -32,4 +32,4 @@ const Header = () => (
     </header>
 )
 
-export default Header;
+export default Header

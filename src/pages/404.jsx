@@ -5,7 +5,7 @@ import HeroSmall from "../components/HeroSmall"
 import "../css/Index.css"
 import SEO from "../components/seo"
 
-const NotFoundPage = ({ data }) => (
+const NotFoundPage = () => (
   <Layout>
       <SEO
         title="404 Page not Found"

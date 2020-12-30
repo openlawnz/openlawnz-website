@@ -9,9 +9,8 @@ import "../css/Index.css"
 const BlogPage = ({data}) => {
 
     const blogItems =  data.allNewsJson.nodes.sort((a,b) => {
-        return +new Date(b.data) - +new Date(a.data);
+        return +new Date(b.data) - +new Date(a.data)
     })
-    console.log(blogItems)
     return (
         <Layout>
             <HeroSmall title="Blog"/>
@@ -41,7 +40,7 @@ const BlogPage = ({data}) => {
                                     {
                                         
                                         blogItems.map(({title}, idx) => (
-                                            <li>
+                                            <li key={idx}>
                                                 <a href={`#${title}`}>
                                                     {title}
                                                 </a>
@@ -58,7 +57,7 @@ const BlogPage = ({data}) => {
     )
 }
 
-export default BlogPage;
+export default BlogPage
 
 export const query = graphql`
     query MyQuery {

@@ -12,16 +12,16 @@ const HowToUse = () => (
             description="Not quite Laws 101, this is a quick guide into the principles of how to do legal research in New Zealand."
         />
         <HeroSmall title="How to Use"/>
-        <div class="inner">
-            <div class="body-wrap content-page right-on-top">
-                <div class="body-left">
-                    <div id="laws-001" class="content-section">
-                        <h2 class="body-title">Laws 001</h2>
+        <div className="inner">
+            <div className="body-wrap content-page right-on-top">
+                <div className="body-left">
+                    <div id="laws-001" className="content-section">
+                        <h2 className="body-title">Laws 001</h2>
                         <p>
                             Not quite Laws 101, this is a quick guide into the principles of how to do legal
                             research in New Zealand.
                         </p>
-                        <h3 class="body-title">What is law?</h3>
+                        <h3 className="body-title">What is law?</h3>
                         <p>
                             Law in New Zealand is mostly made up of legislation (Acts of Parliament) and case law
                             (decisions of Judges in Courts).
@@ -38,7 +38,7 @@ const HowToUse = () => (
                             You can use OpenLaw NZ to find case law that might help you find the answer to a legal
                             question. This is how.
                         </p>
-                        <h3 class="body-title">New Zealand Court structure</h3>
+                        <h3 className="body-title">New Zealand Court structure</h3>
                         <p>
                             First, understand the Courts structure. The Court system in New Zealand is structured in
                             a hierarchy. From top to bottom:
@@ -61,10 +61,10 @@ const HowToUse = () => (
                             find a Supreme Court case on topic, that will be the most authoritative and useful,
                             because anything the Supreme Court says, all other Courts must follow.
                         </p>
-                        <h3 class="body-title">
+                        <h3 className="body-title">
                             How to find an answer to a legal question
                         </h3>
-                        <h4 class="body-title">Step 1 – identify the relevant law</h4>
+                        <h4 className="body-title">Step 1 – identify the relevant law</h4>
                         <p>
                             The easiest place to start is with the section (or sections) of an Act of Parliament
                             that apply to your situation. For example, if you want to know about parenting orders,
@@ -81,7 +81,7 @@ const HowToUse = () => (
                             legislation until you have at least one section that you think is relevant to your
                             situation.
                         </p>
-                        <h4 class="body-title">
+                        <h4 className="body-title">
                             Step 2 – Confirm the section is relevant and understand how it is applied
                         </h4>
                         <p>
@@ -106,7 +106,7 @@ const HowToUse = () => (
                             Alternatively, you can use OpenLaw NZ fulltext search to find cases with relevant facts
                             or law. See below for some guidance on how you can use our search.
                         </p>
-                        <h4 class="body-title">Step 3 – Find related cases</h4>
+                        <h4 className="body-title">Step 3 – Find related cases</h4>
                         <p>
                             Once you have a case, it might be helpful to see if other cases talk about it. If lots
                             of cases talk about it, that is generally a sign that it is an important case. Likewise,
@@ -124,20 +124,20 @@ const HowToUse = () => (
                             case), using the information on the right side of the page.
                         </p>
                     </div>
-                    <div id="using-search" class="content-section">
-                        <h2 class="body-title">Using the Search</h2>
+                    <div id="using-search" className="content-section">
+                        <h2 className="body-title">Using the Search</h2>
                         <p>
                             OpenLaw NZ search allows the following search syntax (in the main fulltext search field
                             - not specific field searches like category or court).
                         </p>
-                        <h3 class="body-title">Boolean search</h3>
+                        <h3 className="body-title">Boolean search</h3>
                         <p>The following operators are enabled:</p>
-                        <h4 class="body-title">Phrases ""</h4>
+                        <h4 className="body-title">Phrases ""</h4>
                         <p>
                             Search for specific phrases by putting them in quotes. For example,
                             <code>"rescue helicopter"</code> will search for that exact phrase.
                         </p>
-                        <h4 class="body-title">OR operator "OR" or ||</h4>
+                        <h4 className="body-title">OR operator "OR" or ||</h4>
                         <p>
                             The OR operator is a vertical bar or pipe character. For example:
                             <code>wifi || luxury</code> will search for documents containing either "wifi" or
@@ -147,20 +147,20 @@ const HowToUse = () => (
                             <strong>OR is the default conjunction operator</strong>, so you can also leave it out:
                             <code>wifi luxury</code> is the equivalent of <code>wifi || luxury</code>.
                         </p>
-                        <h4 class="body-title">AND operator "AND", "&&" or "+"</h4>
+                        <h4 className="body-title">AND operator "AND", "&&" or "+"</h4>
                         <p>
                             The AND operator is an ampersand or a plus sign. For example:
                             <code>wifi && luxury</code> will search for documents containing both "wifi" and
                             "luxury". The plus character (+) is used for required terms. For example, +wifi +luxury
                             stipulates that both terms must appear somewhere in the field of a single document.
                         </p>
-                        <h4 class="body-title">NOT operator "NOT", "!" or "-"</h4>
+                        <h4 className="body-title">NOT operator "NOT", "!" or "-"</h4>
                         <p>
                             The NOT operator is a minus sign. For example,
                             <code>wifi –luxury</code> will search for documents that have the wifi term and do not
                             contain the term luxury.
                         </p>
-                        <h3 class="body-title">Fuzzy search</h3>
+                        <h3 className="body-title">Fuzzy search</h3>
                         <p>
                             A fuzzy search finds matches in terms that have a similar construction, expanding a term
                             up to the maximum of 50 terms that meet the distance criteria of two or less. For more
@@ -176,30 +176,30 @@ const HowToUse = () => (
                             Fuzzy search can only be applied to terms, not phrases, but you can append the tilde to
                             each term individually in a multi-part name or phrase.
                         </p>
-                        <h3 class="body-title">Proximity search</h3>
+                        <h3 className="body-title">Proximity search</h3>
                         <p>
                             Proximity searches are used to find terms that are near each other in a document. Insert
                             a tilde "~" symbol at the end of a phrase followed by the number of words that create
                             the proximity boundary. For example, <code>"hotel airport"~5</code> will find the terms
                             "hotel" and "airport" within 5 words of each other in a document.
                         </p>
-                        <h3 class="body-title">Wildcards</h3>
+                        <h3 className="body-title">Wildcards</h3>
                         <p>
                             You can use <code>*</code> for multiple and <code>?</code> for single character wildcard
                             searches. For example, a query expression of search=alpha* returns "alphanumeric" or
                             "alphabetical".
                         </p>
                     </div>
-                    <div id="using-api" class="content-section">
-                        <h2 class="body-title">Using the API</h2>
-                        <h3 class="body-title">Terms of use</h3>
+                    <div id="using-api" className="content-section">
+                        <h2 className="body-title">Using the API</h2>
+                        <h3 className="body-title">Terms of use</h3>
                         <p>
                             By using our API you agree to the
                             <a href="https://s3-ap-southeast-2.amazonaws.com/assets.openlaw.nz/apiterms.pdf"
                                 >API Terms of Use</a
                             >
                         </p>
-                        <h3 class="body-title">What the API does</h3>
+                        <h3 className="body-title">What the API does</h3>
                         <p>
                             The OpenLaw NZ API facilitates programmatic access to our case law data. This means you
                             can integrate case law data and insights into your own applications or services.
@@ -210,8 +210,8 @@ const HowToUse = () => (
                         </p>
                     </div>
                 </div>
-                <div class="body-right">
-                    <div class="on-this-page">
+                <div className="body-right">
+                    <div className="on-this-page">
                         <h2>On this page</h2>
                         <nav>
                             <ul>

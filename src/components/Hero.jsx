@@ -11,4 +11,4 @@ const HeroLarge = () => (
     </div>
 )
 
-export default HeroLarge;
+export default HeroLarge

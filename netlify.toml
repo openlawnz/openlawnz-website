@@ -4,7 +4,7 @@
   publish = "public"
 
 [[redirects]]
-  from = "/search"
+  from = "/search-cases"
   to = "/.netlify/functions/search"
   status = 200
   force = true
