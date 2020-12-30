@@ -10,3 +10,13 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 
 exports.createSchemaCustomization = ({ actions }) => {
 }
+
+exports.onCreatePage = ({ page, actions }) => {
+  const { createPage } = actions
+  if (page.path.match(/^\/case/)) {
+    page.matchPath = "/case/*"
+
+    createPage(page)
+  }
+}
+

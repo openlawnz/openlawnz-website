@@ -1,4 +1,4 @@
-import { navigate } from "gatsby"
+import { Link, navigate } from "gatsby"
 import React, { useEffect } from "react"
 import ReactPaginate from "react-paginate"
 import { NumberParam, StringParam, useQueryParam } from "use-query-params"
@@ -71,7 +71,7 @@ const SearchPage = () => {
                                                 const highlightText = highlights.caseText[0]
                                                 return (
                                                     <tr key={idx}>
-                                                        <td className="case-name-column"><a href="single-case.html?case=${caseCitation.id}">{caseName}</a></td>
+                                                        <td className="case-name-column"><Link to={`/case/${caseCitation.id}`}>{caseName}</Link></td>
                                                         <td className="citation-column">{caseCitation.citation}</td>
                                                         <td className="date-column">{caseDate.substring(0,10)}</td>
                                                         <td 
