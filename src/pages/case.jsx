@@ -31,7 +31,7 @@ const CasePage = (props) => {
    const adobeDCViewerCallback = () => {
      setAdobeDCView(
        new window.AdobeDC.View({
-         clientId: `1639f22871dc4d1891119d8833bf473b`,
+         clientId: process.env.GATSBY_ADOBE_VIEW_KEY,
          divId: "adobe-dc-view",
        })
      )
