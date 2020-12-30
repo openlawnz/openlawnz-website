@@ -4,7 +4,6 @@ import { Link, navigate } from "gatsby"
 
 import "../css/Header.css"
 
-
 const Header = () => {
     const [ query, setQuery ] = React.useState('')
     return (
