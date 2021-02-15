@@ -1,4 +1,4 @@
-import { news } from "./collections"
+import { news, mission } from "./collections"
 
 import { init } from "netlify-cms-app"
 
@@ -14,6 +14,7 @@ const config = {
   },
   collections: [
     news,
+    mission
   ],
   media_folder: "static/assets",
   public_folder: "/assets",
