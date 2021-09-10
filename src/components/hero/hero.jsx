@@ -1,5 +1,5 @@
 import React from "react"
-import "../css/Hero.css"
+import "@/css/Hero.css"
 const HeroLarge = () => (
     <div className="hero hero-large">
         <div className="inner">

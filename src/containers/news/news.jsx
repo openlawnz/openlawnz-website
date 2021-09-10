@@ -1,16 +1,16 @@
 import React from "react"
 
 import { graphql } from "gatsby"
-import Layout from "../components/Layout"
-import HeroSmall from "../components/HeroSmall"
+import Layout from "@/components/layout/layout"
+import HeroSmall from "@/components/hero/hero-small"
+import sanitizeHtml from 'sanitize-html'
 
-import "../css/Index.css"
+import "@/css/Index.css"
 
-const BlogPage = ({data}) => {
+const NewsContainer = (props) => {
+    console.log(props)
+    const { newsItems } = props
 
-    const blogItems =  data.allNewsJson.nodes.sort((a,b) => {
-        return +new Date(b.data) - +new Date(a.data)
-    })
     return (
         <Layout>
             <HeroSmall title="Blog"/>
@@ -18,13 +18,13 @@ const BlogPage = ({data}) => {
 				<div className="body-wrap content-page right-on-top">
 					<div className="body-left">
                         {
-                            blogItems.map(({title, data, text}, idx) => (
+                            newsItems.map(({title, data, text}, idx) => (
                                 <article id={title} className="content-section" key={idx}>
                                     <h2 className="body-title">{title}</h2>
                                     <p className="blog-meta">{data}</p>
                                     {
                                         text.map(({content_html}, idx) => (
-                                            <p key={idx} dangerouslySetInnerHTML={{__html: content_html}}/>
+                                            <p key={idx} dangerouslySetInnerHTML={{__html: sanitizeHtml(content_html)}}/>
                                         ))
                                     }
                                 </article>
@@ -39,7 +39,7 @@ const BlogPage = ({data}) => {
                                 <ul>
                                     {
                                         
-                                        blogItems.map(({title}, idx) => (
+                                        newsItems.map(({title}, idx) => (
                                             <li key={idx}>
                                                 <a href={`#${title}`}>
                                                     {title}
@@ -57,18 +57,4 @@ const BlogPage = ({data}) => {
     )
 }
 
-export default BlogPage
-
-export const query = graphql`
-    query MyQuery {
-        allNewsJson {
-            nodes {
-                title
-                text {
-                    content_html
-                }
-                data(formatString: "YYYY-MM-DD")
-            }
-        }
-    }
-`
+export default NewsContainer

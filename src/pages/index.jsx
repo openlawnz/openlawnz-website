@@ -1,19 +1,19 @@
 import React from "react"
 import { Link } from "gatsby"
 
-import Layout from "../components/Layout"
-import SEO from "../components/seo"
-import HeroLarge from "../components/Hero"
+import Layout from "@/components/layout/layout"
+import SEO from "@/components/seo"
+import HeroLarge from "@/components/hero/hero"
 
-import "../css/Index.css"
+import "@/css/Index.css"
 
-import improveImage from "../images/home/our-mission/improve.svg"
-import spurImage from "../images/home/our-mission/spur.svg"
-import fundImage from "../images/home/our-mission/fund.svg"
+import improveImage from "@/images/home/our-mission/improve.svg"
+import spurImage from "@/images/home/our-mission/spur.svg"
+import fundImage from "@/images/home/our-mission/fund.svg"
 
-import howToUseImage from "../images/home/explore/how-to-use.svg"
-import ourMissionImage from "../images/home/explore/our-mission.svg"
-import blogImage from "../images/home/explore/our-blog.svg"
+import howToUseImage from "@/images/home/explore/how-to-use.svg"
+import ourMissionImage from "@/images/home/explore/our-mission.svg"
+import blogImage from "@/images/home/explore/our-blog.svg"
 
 const HomePage = () => {
     return (
@@ -65,9 +65,9 @@ const HomePage = () => {
 									<img src={ourMissionImage} alt="" />
 									<p>Our mission</p>
 								</Link>
-								<Link to="/blog">
+								<Link to="/news">
 									<img src={blogImage} alt="" />
-									<p>Our blog</p>
+									<p>Our News</p>
 								</Link>
 							</div>
 						</div>
@@ -82,7 +82,7 @@ const HomePage = () => {
 					</div>
 					<div className="body-right">
 						<div className="on-this-page">
-							<h2>Blog</h2>
+							<h2>News</h2>
 							<ul>
 								<li>
 									<Link to="blog#openlaw-nz-receives-law-foundation-grant"

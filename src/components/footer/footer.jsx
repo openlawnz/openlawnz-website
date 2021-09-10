@@ -1,7 +1,7 @@
 import React from "react"
-import "../css/Footer.css"
+import "@/css/Footer.css"
 
-import lawFoundationLogo from "../images/global/law-foundation-logo.svg"
+import lawFoundationLogo from "@/images/global/law-foundation-logo.svg"
 
 const Footer = () => (
     <footer>

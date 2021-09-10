@@ -1,9 +1,9 @@
 import React from "react"
-import Layout from "../components/Layout"
-import HeroSmall from "../components/HeroSmall"
+import Layout from "@/components/layout/layout"
+import HeroSmall from "@/components/hero/hero-small"
 
-import "../css/Index.css"
-import SEO from "../components/seo"
+import "@/css/Index.css"
+import SEO from "@/components/seo"
 
 const NotFoundPage = () => (
   <Layout>

@@ -1,8 +1,8 @@
 import React from "react"
-import Logo from "../images/global/logo.svg"
+import Logo from "@/images/global/logo.svg"
 import { Link, navigate } from "gatsby"
 
-import "../css/Header.css"
+import "@/css/Header.css"
 
 const Header = () => {
     const [ query, setQuery ] = React.useState('')
@@ -15,7 +15,7 @@ const Header = () => {
                 <nav>
                     <Link to="/our-mission" activeClassName="active">Our Mission</Link>
                     <Link to="/how-to-use" activeClassName="active">How to Use</Link>
-                    <Link to="/blog" activeClassName="active">Blog</Link>
+                    <Link to="/news" activeClassName="active">News</Link>
                 </nav>
                 <form method="get" onSubmit={(e) => {
                         e.preventDefault()
