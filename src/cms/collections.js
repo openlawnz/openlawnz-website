@@ -1,4 +1,4 @@
-import { title, textModule } from "./modules"
+import { title, textModule, modules } from "./modules"
 
 export const news = {
     label: "News",
@@ -23,7 +23,7 @@ export const mission = {
     create: true,
     fields: [
         title,
-        textModule,
+        modules,
         { label: "Date Posted", name: "data", widget: "datetime"}
     ]
 }

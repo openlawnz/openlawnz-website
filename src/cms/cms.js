@@ -1,7 +1,7 @@
 import { news, mission } from "./collections"
 
-import { init } from "netlify-cms-app"
-
+import { init, registerPreviewTemplate } from "netlify-cms-app"
+import * as previews from "./previews/previews"
 window.CMS_MANUAL_INIT = true
 
 const { GATSBY_BRANCH } = process.env
@@ -23,4 +23,8 @@ const config = {
 }
 
 init({ config })
+
+registerPreviewTemplate("Mission", previews.ourMissionPreview)
+registerPreviewTemplate("news", previews.newsPreview)
+
 
