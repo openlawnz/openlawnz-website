@@ -1,3 +1,5 @@
+const path = require('path')
+
 module.exports = {
   siteMetadata: {
     title: `OpenLaw NZ`,
@@ -68,6 +70,27 @@ module.exports = {
       },
     },
     `gatsby-plugin-react-helmet`,
+   
+    {
+      resolve: `gatsby-plugin-alias-imports`,
+      options: {
+        alias: {
+          "@/components": path.resolve(__dirname, "src/components"),
+          "@/css": path.resolve(__dirname, "src/css"),
+          "@/cms": path.resolve(__dirname, "src/cms"),
+          "@/public": path.resolve(__dirname, "src/public"),
+          "@/static": path.resolve(__dirname, "src/static"),
+          "@/images": path.resolve(__dirname, "src/images"),
+          "@/containers": path.resolve(__dirname, "src/containers"),
+        },
+        extensions: ["js", "jsx", "css", "scss", "svg", "png", "json", "jpg"]
+      }
+    },
+    "gatsby-plugin-use-query-params",
+    // this (optional) plugin enables Progressive Web App + Offline functionality
+    // To learn more, visit: https://gatsby.dev/offline
+    // `gatsby-plugin-offline`,
+
     {
       resolve: `gatsby-plugin-netlify-cms`,
       options: {
@@ -75,10 +98,6 @@ module.exports = {
         modulePath: `${__dirname}/src/cms/cms.js`,
       },
     },
-    "gatsby-plugin-use-query-params",
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
   ],
 }
 
