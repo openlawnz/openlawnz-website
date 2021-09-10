@@ -5,8 +5,6 @@ import Layout from "@/components/layout/layout"
 import SEO from "@/components/seo"
 import HeroLarge from "@/components/hero/hero"
 
-import "@/css/Index.css"
-
 import improveImage from "@/images/home/our-mission/improve.svg"
 import spurImage from "@/images/home/our-mission/spur.svg"
 import fundImage from "@/images/home/our-mission/fund.svg"
@@ -15,6 +13,8 @@ import howToUseImage from "@/images/home/explore/how-to-use.svg"
 import ourMissionImage from "@/images/home/explore/our-mission.svg"
 import blogImage from "@/images/home/explore/our-blog.svg"
 import SideNav from "../components/side-nav/side-nav"
+
+import "@/css/Index.css"
 
 const HomePage = () => {
     return (

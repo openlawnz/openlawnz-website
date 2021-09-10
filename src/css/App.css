@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap');
 
+/* Global styles shared across the website */
+
 @media only screen and (min-width: 960px) {
 	:root {
 		--margin-top-between-sections: 70px;
