@@ -1,6 +1,6 @@
 .hero {
 	height: 127px;
-	background-image: url("../images/global/content-hero.svg");
+	background-image: url("../../images/global/content-hero.svg");
 	background-position: center center;
 	background-repeat: no-repeat;
 	display: flex;
@@ -9,7 +9,7 @@
 }
 
 .hero-large {
-	background-image: url("../images/home/hero.svg");
+	background-image: url("../../images/home/hero.svg");
 }
 
 .hero .inner {

@@ -2,8 +2,6 @@ import React from "react"
 import SEO from "@/components/seo"
 import HowToUseContainer from "@/containers/how-to-use/how-to-use"
 
-import "@/css/Index.css"
-
 const HowToUse = () => (
     <>
       <SEO 

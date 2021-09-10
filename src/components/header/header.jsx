@@ -2,7 +2,7 @@ import React from "react"
 import Logo from "@/images/global/logo.svg"
 import { Link, navigate } from "gatsby"
 
-import "@/css/Header.css"
+import "./header.css"
 
 const Header = () => {
     const [ query, setQuery ] = React.useState('')

@@ -7,7 +7,7 @@ import Layout from "@/components/layout/layout"
 import SEO from "@/components/seo"
 import sanitizeHtml from "sanitize-html"
 
-import "./Search.css"
+import "./search.css"
 
 const SearchPageContainer = () => {
     const [ query ] = useQueryParam("q", StringParam)

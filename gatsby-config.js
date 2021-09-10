@@ -82,6 +82,7 @@ module.exports = {
           "@/static": path.resolve(__dirname, "src/static"),
           "@/images": path.resolve(__dirname, "src/images"),
           "@/containers": path.resolve(__dirname, "src/containers"),
+          "@/helpers": path.resolve(__dirname, "src/helpers"),
         },
         extensions: ["js", "jsx", "css", "scss", "svg", "png", "json", "jpg"]
       }

@@ -14,6 +14,7 @@ import fundImage from "@/images/home/our-mission/fund.svg"
 import howToUseImage from "@/images/home/explore/how-to-use.svg"
 import ourMissionImage from "@/images/home/explore/our-mission.svg"
 import blogImage from "@/images/home/explore/our-blog.svg"
+import SideNav from "../components/side-nav/side-nav"
 
 const HomePage = () => {
     return (
@@ -80,28 +81,21 @@ const HomePage = () => {
 							<a href="mailto:enquiries@openlaw.nz" className="primary-button">Get in touch</a>
 						</div>
 					</div>
-					<div className="body-right">
-						<div className="on-this-page">
-							<h2>News</h2>
-							<ul>
-								<li>
-									<Link to="blog#openlaw-nz-receives-law-foundation-grant"
-										>OpenLaw NZ Receives Law Foundation Grant
-                                    </Link>
-								</li>
-								<li>
-									<Link to="blog#openlaw-nz-launches-new-website">
-										OpenLaw NZ launches new website
-									</Link>
-								</li>
-								<li>
-									<Link to="blog#amazing-response-to-call-for-volunteers">
-										Amazing response to call for volunteers
-									</Link>
-								</li>
-							</ul>
-						</div>
-					</div>
+
+					<SideNav heading="News" items={[
+						{
+							address: "/news#openlaw-nz-receives-law-foundation-grant",
+							text: "OpenLaw NZ Receives Law Foundation Grant"
+						},
+						{
+							address: "/news#openlaw-nz-launches-new-website",
+							text: "OpenLaw NZ launches new website"
+						},
+						{
+							address: "/news#amazing-response-to-call-for-volunteers",
+							text: "Amazing response to call for volunteers"
+						}
+					]}/>
 				</div>
 			</div>
         </Layout>

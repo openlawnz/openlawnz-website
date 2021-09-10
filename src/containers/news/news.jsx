@@ -4,22 +4,24 @@ import { graphql } from "gatsby"
 import Layout from "@/components/layout/layout"
 import HeroSmall from "@/components/hero/hero-small"
 import sanitizeHtml from 'sanitize-html'
+import toSlug from "@/helpers/to-slug"
 
-import "@/css/Index.css"
+import SideNav from "@/components/side-nav/side-nav"
+
+
 
 const NewsContainer = (props) => {
-    console.log(props)
     const { newsItems } = props
 
     return (
         <Layout>
-            <HeroSmall title="Blog"/>
+            <HeroSmall title="News"/>
             <div className="inner">
 				<div className="body-wrap content-page right-on-top">
 					<div className="body-left">
                         {
                             newsItems.map(({title, data, text}, idx) => (
-                                <article id={title} className="content-section" key={idx}>
+                                <article id={toSlug(title)} className="content-section" key={idx}>
                                     <h2 className="body-title">{title}</h2>
                                     <p className="blog-meta">{data}</p>
                                     {
@@ -32,25 +34,8 @@ const NewsContainer = (props) => {
                         }
                     </div>
                 
-                    <div className="body-right">
-                        <div className="on-this-page">
-                            <h2>On this page</h2>
-                            <nav>
-                                <ul>
-                                    {
-                                        
-                                        newsItems.map(({title}, idx) => (
-                                            <li key={idx}>
-                                                <a href={`#${title}`}>
-                                                    {title}
-                                                </a>
-                                            </li>
-                                        ))
-                                    }
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
+
+                    <SideNav heading="On this page" items={newsItems.map(({title}) => ({text: title, address: `#${toSlug(title)}`}))}/>
                 </div>
             </div>
         </Layout>

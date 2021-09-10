@@ -2,7 +2,7 @@ import React from "react"
 import HeroSmall from "@/components/hero/hero-small"
 import Layout from "@/components/layout/layout"
 
-import "@/css/Index.css"
+import SideNav from "../../components/side-nav/side-nav"
 
 const HowToUseContainer = () => (
     <Layout>
@@ -205,24 +205,21 @@ const HowToUseContainer = () => (
                         </p>
                     </div>
                 </div>
-                <div className="body-right">
-                    <div className="on-this-page">
-                        <h2>On this page</h2>
-                        <nav>
-                            <ul>
-                                <li>
-                                    <a href="#laws-001">Laws 001</a>
-                                </li>
-                                <li>
-                                    <a href="#using-search">Using Search</a>
-                                </li>
-                                <li>
-                                    <a href="#using-api">Using API</a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
+
+                <SideNav heading="On this page" items={[
+                    {
+                        text: "Laws 001", 
+                        address: "#laws-001"
+                    },
+                    {
+                        text: "Using Search",
+                        address: "#using-search"
+                    },
+                    {
+                        text: "Using API",
+                        address: "#using-api"
+                    }
+                ]}/>    
             </div>
         </div>
     </Layout>

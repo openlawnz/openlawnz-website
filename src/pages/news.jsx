@@ -13,7 +13,7 @@ const NewsPage = ({data}) => {
     return (
         <>
             <SEO
-                    title="Blog" 
+                    title="News" 
                     description="News and updates about OpenLaw NZ"
                 />
             <NewsContainer newsItems={newsItems}/>

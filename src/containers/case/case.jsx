@@ -23,7 +23,6 @@ const CaseContainer = (props) => {
             const res = await fetch(`/api?case=${caseId}`) 
 
             const caseData = await res.json()
-            console.log(1, caseData)
 
             setCurrentCase(caseData.data?.caseCitation?.case)
        })()

@@ -1,12 +1,12 @@
 import React from "react"
 import HeroSmall from "@/components/hero/hero-small"
 
-import "@/css/Index.css"
-
 import AndrewImage from "@/images/our-mission/andrew-easterbrook.jpg"
 import WillImage from "@/images/our-mission/william-parry.jpg"
 import sanitizeHtml from 'sanitize-html'
-import Layout from "../../components/layout/layout"
+import Layout from "@/components/layout/layout"
+import SideNav from "@/components/side-nav/side-nav"
+import toSlug from "@/helpers/to-slug"
 
 export const OurMissionContainer = ({title, modules}) => { 
     return (
@@ -16,10 +16,9 @@ export const OurMissionContainer = ({title, modules}) => {
                 <div className="body-wrap content-page right-on-top">
                     <div className="body-left">
                         {
-                            modules.map(({ title, data, content }, idx) => (
-                                <article id={title} className="content-section" key={idx}>
+                            modules.map(({ title, content }, idx) => (
+                                <article id={toSlug(title)} className="content-section" key={idx}>
                                     <h2 className="body-title">{title}</h2>
-                                    <p className="blog-meta">{data}</p>
                                     {
                                         content.map(({ content_html }, idx) => (
                                             <p key={idx} dangerouslySetInnerHTML={{ __html: sanitizeHtml(content_html) }} />
@@ -57,24 +56,8 @@ export const OurMissionContainer = ({title, modules}) => {
                             </div>
                         </div>
                     </div>
-                    <div className="body-right">
-                        <div className="on-this-page">
-                            <h2>On this page</h2>
-                            <nav>
-                                <ul>
-                                    {
-                                        modules.map(({ title }, idx) => (
-                                            <li key={idx}>
-                                                <a href={`#${title}`}>
-                                                    {title}
-                                                </a>
-                                            </li>
-                                        ))
-                                    }
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
+
+                    <SideNav heading="On this page" items={modules.map(({title}) => ({ text: title, address: `#${title}`}))}/>
                 </div>
             </div>
         </Layout>
