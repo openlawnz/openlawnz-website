@@ -14,7 +14,7 @@ import ourMissionImage from "@/images/home/explore/our-mission.svg"
 import blogImage from "@/images/home/explore/our-blog.svg"
 import SideNav from "../components/side-nav/side-nav"
 
-import "@/css/Index.css"
+import "@/css/index.css"
 
 const HomePage = () => {
     return (

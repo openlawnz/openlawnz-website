@@ -5,7 +5,7 @@ import Layout from "@/components/layout/layout"
 import SEO from "@/components/seo"
 
 
-import "./Case.css"
+import "./case.css"
 
 const CaseContainer = (props) => {
     const [ currentCase, setCurrentCase ] = React.useState({})
