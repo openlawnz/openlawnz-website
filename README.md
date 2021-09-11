@@ -3,7 +3,7 @@
 ![Dependabot](https://badgen.net/dependabot/openlawnz/openlawnz-web/117378835=?icon=dependabot)
 
 ## Running
-Create a `.env` file in the root of the project with the content copied of `env-sample`.
+Create a `.env` file in the root of the project with the content copied of `env-sample`. 
 
 	yarn install
 	netlify dev
