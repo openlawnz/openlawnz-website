@@ -1,15 +1,14 @@
 import * as previews from "./previews"
 import { news, mission } from "./collections"
 import { init, registerPreviewTemplate } from "netlify-cms-app"
-window.CMS_MANUAL_INIT = true
 
-const { GATSBY_BRANCH } = process.env
+window.CMS_MANUAL_INIT = true
 
 const config = {
   backend: {
     name: "git-gateway",
     repo: "openlawnz/openlawnz-website",
-    branch: GATSBY_BRANCH || "master",
+    branch: "master",
   },
   collections: [
     news,
