@@ -1,6 +1,6 @@
 const fetch = require("node-fetch")
 
-exports.handler = async function(event, context) {
+exports.handler = async function(event) {
 
   const caseCitation = event.queryStringParameters.case
   const { API_SECRET, API_URL } = process.env
@@ -45,7 +45,7 @@ exports.handler = async function(event, context) {
         caseCitation(id: "${caseCitation}") {
           ${caseFields} 
         } 
-      }`; 
+      }` 
 
     const res = await fetch(`${API_URL}/graphql`, {
       method: 'POST',

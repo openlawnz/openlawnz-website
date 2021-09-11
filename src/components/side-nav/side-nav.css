@@ -1,0 +1,39 @@
+
+.on-this-page {
+	margin-top: var(--margin-top-between-sections);
+	position: initial;
+}
+
+@media only screen and (max-width: 1200px) {
+	.on-this-page {
+		text-align: center;
+	}
+}
+
+@media only screen and (min-width: 960px) {
+	.on-this-page {
+		position: sticky;
+		top: 30px;
+	}
+}
+
+.on-this-page h2 {
+	margin: 0 0 15px 0;
+	line-height: 1;
+	color: #393939;
+}
+
+.on-this-page ul {
+	margin: 0;
+	padding: 0;
+}
+
+.on-this-page ul li {
+	list-style: none;
+	margin: 15px 0 0;
+}
+
+.on-this-page ul li a {
+	font-size: 18px;
+	color: #2f6267;
+}

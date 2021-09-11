@@ -1,0 +1,70 @@
+{
+  "data": "2021-09-10T10:51:16.899Z",
+  "modules": [
+    {
+      "type": "text",
+      "title": "Mission statement",
+      "content": [
+        {
+          "content_html": "OpenLaw NZ is an open-source legal data platform. Our goal is to improve the accessibility of case law and other legal information in New Zealand. We want to make it easier for all New Zealanders to understand law.",
+          "title": "OpenLaw NZ is an open-source legal data platform."
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "title": "About Us",
+      "content": [
+        {
+          "content_html": "We founded OpenLaw NZ in 2018 as a non-profit charity in response to the lack of available free legal research tools and data in New Zealand.",
+          "title": "We founded OpenLaw NZ in 2018 as a non-profit charity i"
+        },
+        {
+          "content_html": "Our platform is open source, and can be modified and used by any non-profit organisation around the world to improve access to justice in their country.",
+          "title": "Our platform is open source, and can be modified"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "title": "Our data",
+      "content": [
+        {
+          "content_html": "Because case law is not subject to copyright restrictions, we have been able to re-purpose PDFs of case law from the Ministry of Justice websites and convert them into usable pieces of data that a computer can read and search.",
+          "title": "Because case law is not subject to copyright restrictions"
+        },
+        {
+          "content_html": "The case law data we have currently comprises High Court, Court of Appeal and Supreme Court decisions from present day back to approximately 2004 (with some exceptions, for example some suppressed decisions and other judgments that have not been published), plus ACC appeal decisions in the District Court.",
+          "title": "The case law data we have currently comprises High Court"
+        },
+        {
+          "content_html": "We look at those PDF files and analyse them to see what pieces of information might be useful – for example, references to pieces of legislation, dates, relationships and citations. We’re always working on expanding the data we can extract.",
+          "title": "We look at those PDF files and analyse them to see"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "title": "Stewardship",
+      "content": [
+        {
+          "content_html": "We want to make legal information as accessible as we can.",
+          "title": "We want to make legal information as accessible as we can."
+        },
+        {
+          "content_html": "That means our data is open and accessible to everybody. You can interact with our data through our website and search. Or you can tap directly into our database through our API. All of our code is open source and licensed to the public under the GPL open source license.",
+          "title": "That means our data is open and accessible to everybody."
+        },
+        {
+          "content_html": "Because we are a charity and have limited resources, access to our database and API is only for non-commercial purposes. This lets us make sure that our data isn’t copied by a commercial provider and locked away behind a paywall. If you need access to our data for commercial purposes but consider your use will still benefit the public by enhancing the accessibility of legal information, we will consider it – please get in touch.",
+          "title": "Because we are a charity and have limited resources"
+        },
+        {
+          "content_html": "You can use our search for any purpose including commercial purposes.",
+          "title": "You can use our search for any purpose including commercial purposes."
+        }
+      ]
+    }
+  ],
+  "title": "Our Mission"
+}

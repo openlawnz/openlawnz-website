@@ -1,10 +1,10 @@
 [build]
-  command="cd functions/search && npm i && cd ../api && npm i "
+  command="gatsby build && cd functions/search && npm i && cd ../api && npm i"
   functions = "functions"
   publish = "public"
 
 [[redirects]]
-  from = "/search"
+  from = "/search-cases"
   to = "/.netlify/functions/search"
   status = 200
   force = true
