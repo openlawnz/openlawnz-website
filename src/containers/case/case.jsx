@@ -54,7 +54,7 @@ const CaseContainer = (props) => {
        {
          content: {
            location: {
-             url: `https://openlawnz-pdfs-dev.s3-ap-southeast-2.amazonaws.com/${currentCase.id}`,
+             url: `https://openlawnz-pdfs-prod.s3-ap-southeast-2.amazonaws.com/${currentCase.id}`,
            },
          },
          metaData: { fileName: `${currentCase.caseName}.pdf` },
