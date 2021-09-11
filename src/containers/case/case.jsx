@@ -93,9 +93,9 @@ const CaseContainer = (props) => {
                                         if(caseByCaseCited.caseCitations.length === 0) return undefined
                                         return (
                                             <li key={idx}>
-                                                <Link to={`/case/${caseByCaseCited.caseCitations[0].id}`}>
+                                                <a href={`/case/${caseByCaseCited.caseCitations[0].id}`}>
                                                     {caseByCaseCited.caseName}
-                                                </Link>
+                                                </a>
                                             </li>
                                         )
                                     })
@@ -117,9 +117,9 @@ const CaseContainer = (props) => {
                                         currentCase.casesCitedsByCaseCited.map(({caseByCaseOrigin}, idx) => {
                                             return (
                                                 <li key={idx}>
-                                                    <Link to={`/case/${caseByCaseOrigin.caseCitations[0].id}`}>
+                                                    <a href={`/case/${caseByCaseOrigin.caseCitations[0]?.id}`}>
                                                         {caseByCaseOrigin.caseName}
-                                                    </Link>
+                                                    </a>
                                                 </li>
                                             )
                                         })
