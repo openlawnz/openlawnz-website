@@ -11,7 +11,7 @@ import SideNav from "@/components/side-nav/side-nav"
 
 
 const NewsContainer = (props) => {
-    const { newsItems } = props
+    const { newsItems = [] } = props
 
     return (
         <Layout>
@@ -20,12 +20,12 @@ const NewsContainer = (props) => {
 				<div className="body-wrap content-page right-on-top">
 					<div className="body-left">
                         {
-                            newsItems.map(({title, data, text}, idx) => (
+                            newsItems.map(({title="Blank Title", data, text = []}, idx) => (
                                 <article id={toSlug(title)} className="content-section" key={idx}>
                                     <h2 className="body-title">{title}</h2>
-                                    <p className="blog-meta">{data}</p>
+                                    <p className="blog-meta">{typeof data === "string" ? data : "[Date Published]"}</p>
                                     {
-                                        text.map(({content_html}, idx) => (
+                                        text.map(({content_html = "" }, idx) => (
                                             <p key={idx} dangerouslySetInnerHTML={{__html: sanitizeHtml(content_html)}}/>
                                         ))
                                     }
@@ -35,7 +35,7 @@ const NewsContainer = (props) => {
                     </div>
                 
 
-                    <SideNav heading="On this page" items={newsItems.map(({title}) => ({text: title, address: `#${toSlug(title)}`}))}/>
+                    <SideNav heading="On this page" items={newsItems.map(({title="Blank Title"}) => ({text: title, address: `#${toSlug(title)}`}))}/>
                 </div>
             </div>
         </Layout>
