@@ -1,8 +1,7 @@
-import React from "react"
 import { graphql } from "gatsby"
-import OurMissionContainer from "@/containers/our-mission/our-mission"
 
 import SEO from "@/components/seo"
+import OurMissionContainer from "@/containers/our-mission/our-mission"
 
 const OurMission = ({data}) => {
     const pageContext = data.allMissionJson.nodes[0]

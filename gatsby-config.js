@@ -5,18 +5,16 @@ module.exports = {
     title: `OpenLaw NZ`,
     description: `New Free Legal Research Platform for New Zealand`,
     author: `OpenLaw NZ`,
+    siteUrl: `https://openlaw.nz`
   },
   plugins: [
     {
       resolve: 'gatsby-plugin-eslint',
       options: {
-        test: /\.js$|\.jsx$/,
-        exclude: /(node_modules|.cache|public)/,
-        stages: ['develop'],
-        options: {
-          emitWarning: true,
-          failOnError: false
-        }
+        stages: ["develop"],
+        rulePaths: [`${process.cwd()}/node_modules/gatsby/dist/utils/eslint-rules`],
+        extensions: ["js", "jsx", "ts", "tsx"],
+        exclude: ["node_modules", "bower_components", ".cache", "public"],
       }
     },
     "gatsby-transformer-json",
@@ -64,6 +62,7 @@ module.exports = {
       }
     },
     "gatsby-plugin-use-query-params",
+    `gatsby-plugin-sitemap`,
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

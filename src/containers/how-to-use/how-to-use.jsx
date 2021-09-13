@@ -1,4 +1,3 @@
-import React from "react"
 import HeroSmall from "@/components/hero/hero-small"
 import Layout from "@/components/layout/layout"
 

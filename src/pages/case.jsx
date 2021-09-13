@@ -1,4 +1,3 @@
-import React from "react"
 import CaseContainer from "@/containers/case/case"
 
 const CasePage = (props) => {

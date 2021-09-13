@@ -1,11 +1,13 @@
-import React from "react"
-import Logo from "@/images/global/logo.svg"
-import { Link, navigate } from "gatsby"
-
 import "./header.css"
 
+import { Link, navigate } from "gatsby"
+import { useState } from "react"
+
+import Logo from "@/images/global/logo.svg"
+
+
 const Header = () => {
-    const [ query, setQuery ] = React.useState('')
+    const [ query, setQuery ] = useState('')
     return (
         <header>
             <div className="inner">

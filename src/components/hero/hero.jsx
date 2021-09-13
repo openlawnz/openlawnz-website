@@ -1,4 +1,3 @@
-import React from "react"
 import "./hero.css"
 const HeroLarge = () => (
     <div className="hero hero-large">
