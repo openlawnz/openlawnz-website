@@ -1,6 +1,7 @@
-import * as previews from "./previews"
-import { news, mission } from "./collections"
 import { init, registerPreviewTemplate } from "netlify-cms-app"
+
+import { mission,news } from "./collections"
+import * as previews from "./previews"
 
 window.CMS_MANUAL_INIT = true
 

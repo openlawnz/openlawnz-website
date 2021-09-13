@@ -1,6 +1,7 @@
 import React from "react"
-import { OurMissionContainer } from "@/containers/our-mission/our-mission"
+
 import NewsContainer from "@/containers/news/news"
+import { OurMissionContainer } from "@/containers/our-mission/our-mission"
 
 
 export function ourMissionPreview({ entry }) {

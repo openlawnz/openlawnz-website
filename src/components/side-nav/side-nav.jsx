@@ -1,7 +1,8 @@
-import React from "react"
-import { Link } from "gatsby"
-import toSlug from "@/helpers/to-slug"
 import "./side-nav.css"
+
+import { Link } from "gatsby"
+
+import toSlug from "@/helpers/to-slug"
 
 const SideNav = ({ heading, items}) => {
     return (

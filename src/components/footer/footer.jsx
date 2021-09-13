@@ -1,4 +1,3 @@
-import React from "react"
 import "./footer.css"
 
 import lawFoundationLogo from "@/images/global/law-foundation-logo.svg"

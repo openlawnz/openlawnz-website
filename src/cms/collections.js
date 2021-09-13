@@ -1,4 +1,4 @@
-import { title, textModule, modules } from "./modules"
+import { modules,textModule, title } from "./modules"
 
 export const news = {
     label: "News",

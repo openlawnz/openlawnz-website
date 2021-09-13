@@ -1,12 +1,11 @@
-import React from "react"
-import HeroSmall from "@/components/hero/hero-small"
-
-import AndrewImage from "@/images/our-mission/andrew-easterbrook.jpg"
-import WillImage from "@/images/our-mission/william-parry.jpg"
 import sanitizeHtml from 'sanitize-html'
+
+import HeroSmall from "@/components/hero/hero-small"
 import Layout from "@/components/layout/layout"
 import SideNav from "@/components/side-nav/side-nav"
 import toSlug from "@/helpers/to-slug"
+import AndrewImage from "@/images/our-mission/andrew-easterbrook.jpg"
+import WillImage from "@/images/our-mission/william-parry.jpg"
 
 export const OurMissionContainer = ({title, modules}) => { 
     return (

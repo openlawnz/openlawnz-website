@@ -1,13 +1,14 @@
+import "./search.css"
+
 import { Link, navigate } from "gatsby"
-import React, { useEffect } from "react"
+import { useEffect, useState } from "react"
 import ReactPaginate from "react-paginate"
+import sanitizeHtml from "sanitize-html"
 import { NumberParam, StringParam, useQueryParam } from "use-query-params"
+
 import HeroSmall from "@/components/hero/hero-small"
 import Layout from "@/components/layout/layout"
 import SEO from "@/components/seo"
-import sanitizeHtml from "sanitize-html"
-
-import "./search.css"
 
 const SearchPageContainer = () => {
     const [ query ] = useQueryParam("q", StringParam)
@@ -15,11 +16,11 @@ const SearchPageContainer = () => {
     const [ location ] = useQueryParam("location", StringParam)
     const [ court ] = useQueryParam("court", StringParam)
     
-    const [ newQuery, setNewQuery ] = React.useState(query)
-    const [ newLocation, setNewLocation ] = React.useState(location)
-    const [ newCourt, setNewCourt ] = React.useState(court)
+    const [ newQuery, setNewQuery ] = useState(query)
+    const [ newLocation, setNewLocation ] = useState(location)
+    const [ newCourt, setNewCourt ] = useState(court)
 
-    const [ cases, setCases ] = React.useState({})
+    const [ cases, setCases ] = useState({})
 
     useEffect(() => {
        (async () => {

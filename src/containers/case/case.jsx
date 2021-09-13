@@ -1,15 +1,15 @@
+import "./case.css"
+
 import { Link } from "gatsby"
-import React, { useEffect } from "react"
+import { useEffect,useState } from "react"
+
 import HeroSmall from "@/components/hero/hero-small"
 import Layout from "@/components/layout/layout"
 import SEO from "@/components/seo"
 
-
-import "./case.css"
-
 const CaseContainer = (props) => {
-    const [ currentCase, setCurrentCase ] = React.useState({})
-    const [adobeDCView, setAdobeDCView] = React.useState(null)
+    const [ currentCase, setCurrentCase ] = useState({})
+    const [adobeDCView, setAdobeDCView] = useState(null)
 
     const caseId = props['*'] || "No case"
 

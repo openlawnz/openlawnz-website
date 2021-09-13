@@ -1,6 +1,3 @@
-import React from "react"
-
-import { graphql } from "gatsby"
 import Layout from "@/components/layout/layout"
 import HeroSmall from "@/components/hero/hero-small"
 import sanitizeHtml from 'sanitize-html'

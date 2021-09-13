@@ -1,10 +1,9 @@
-import React from "react"
+import "@/css/app.css"
+
 import PropTypes from "prop-types"
 
-import Header from "../header/header"
 import Footer from "../footer/footer"
-
-import "@/css/app.css"
+import Header from "../header/header"
 
 const Layout = ({ children }) => {
   return (
