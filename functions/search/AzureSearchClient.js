@@ -1,6 +1,6 @@
 // From https://github.com/Azure-Samples/azure-search-javascript-samples/blob/master/quickstart/AzureSearchClient.js
 
-const fetch = require('node-fetch');
+import fetch from "node-fetch"
 
 class AzureSearchClient {
     constructor(searchServiceName, adminKey, queryKey, indexName) {

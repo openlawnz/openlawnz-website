@@ -16,3 +16,6 @@
   status = 200
   force = true
   headers = { X-From = "Netlify" }
+
+[functions]
+  node_bundler = "esbuild"
