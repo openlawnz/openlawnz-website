@@ -28,7 +28,7 @@
   "devDependencies": {
     "babel-eslint": "^10.1.0",
     "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-react": "^7.30.1",
+    "eslint-plugin-react": "^7.31.9",
     "gatsby-plugin-eslint": "^4.0.0",
     "prettier": "2.7.1"
   },
