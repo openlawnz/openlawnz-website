@@ -23,7 +23,7 @@
     "react-helmet": "^6.1.0",
     "react-paginate": "^8.1.4",
     "sanitize-html": "^2.7.2",
-    "use-query-params": "^1.1.9"
+    "use-query-params": "^2.1.2"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
