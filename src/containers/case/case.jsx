@@ -1,6 +1,5 @@
 import "./case.css"
 
-import { Link } from "gatsby"
 import { useEffect,useState } from "react"
 
 import HeroSmall from "@/components/hero/hero-small"
