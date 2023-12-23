@@ -1,41 +1,34 @@
-// const { createFilePath } = require(`gatsby-source-filesystem`)
-
-// exports.createPages = async ({ graphql, actions, reporter }) => {
-//   const { createPage } = actions
-// }
-
-// exports.onCreateNode = ({ node, actions, getNode }) => {
-// }
-
-// exports.createSchemaCustomization = ({ actions }) => {
-// }
-
 exports.onCreatePage = ({ page, actions }) => {
-  const { createPage } = actions;
+  const { createPage, deletePage } = actions;
 
-  // Check if the page is the search page
   if (page.path.match(/^\/search/)) {
-    page.defer = true;
-    createPage(page)
-  } else if (page.path.match(/^\/case/)) {
-    // Existing logic for case pages
+    deletePage(page);
+    createPage({
+      ...page,
+      context: {},
+      defer: true, // This page will be built on-demand
+    });
+  }
+
+  if (page.path.match(/^\/case/)) {
     page.matchPath = "/case/*";
     createPage(page);
   }
-}
+};
+
 exports.onCreateWebpackConfig = helper => {
-  const { stage, actions, getConfig } = helper
+  const { stage, actions, getConfig } = helper;
   if (stage === "develop" || stage === 'build-javascript') {
-    const config = getConfig()
+    const config = getConfig();
     const miniCssExtractPlugin = config.plugins.find(
       plugin => plugin.constructor.name === "MiniCssExtractPlugin"
-    )
+    );
     if (miniCssExtractPlugin) {
-      miniCssExtractPlugin.options.ignoreOrder = true
+      miniCssExtractPlugin.options.ignoreOrder = true;
     }
-    actions.replaceWebpackConfig(config)
+    actions.replaceWebpackConfig(config);
   }
-}
+};
 
 exports.onCreateBabelConfig = ({ actions }) => {
   actions.setBabelPlugin({
@@ -43,5 +36,5 @@ exports.onCreateBabelConfig = ({ actions }) => {
     options: {
       runtime: 'automatic',
     },
-  })
-}
+  });
+};

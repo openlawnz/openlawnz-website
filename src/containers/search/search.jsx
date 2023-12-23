@@ -11,10 +11,13 @@ import Layout from "@/components/layout/layout"
 import SEO from "@/components/seo"
 
 const SearchPageContainer = () => {
-    const [ query ] = useQueryParam("q", StringParam)
-    const [ page, setPage ] = useQueryParam("p", NumberParam)
-    const [ location ] = useQueryParam("location", StringParam)
-    const [ court ] = useQueryParam("court", StringParam)
+    
+    const [query, setQuery] = useQueryParams({
+        q: StringParam,
+        p: NumberParam,
+        location: StringParam,
+        court: StringParam
+      });
     
     const [ newQuery, setNewQuery ] = useState(query)
     const [ newLocation, setNewLocation ] = useState(location)
