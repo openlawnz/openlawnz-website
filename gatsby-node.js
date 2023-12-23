@@ -11,14 +11,18 @@
 // }
 
 exports.onCreatePage = ({ page, actions }) => {
-  const { createPage } = actions
-  if (page.path.match(/^\/case/)) {
-    page.matchPath = "/case/*"
+  const { createPage } = actions;
 
+  // Check if the page is the search page
+  if (page.path.match(/^\/search/)) {
+    page.defer = true;
     createPage(page)
+  } else if (page.path.match(/^\/case/)) {
+    // Existing logic for case pages
+    page.matchPath = "/case/*";
+    createPage(page);
   }
-} 
-
+}
 exports.onCreateWebpackConfig = helper => {
   const { stage, actions, getConfig } = helper
   if (stage === "develop" || stage === 'build-javascript') {
