@@ -4,7 +4,7 @@ import { Link, navigate } from "gatsby"
 import { useEffect, useState } from "react"
 import ReactPaginate from "react-paginate"
 import sanitizeHtml from "sanitize-html"
-import { NumberParam, StringParam, useQueryParam } from "use-query-params"
+import { NumberParam, StringParam, useQueryParams } from "use-query-params"
 
 import HeroSmall from "@/components/hero/hero-small"
 import Layout from "@/components/layout/layout"
