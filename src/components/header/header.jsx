@@ -25,8 +25,8 @@ const Header = () => {
                         navigate(`/search?q=${query}`)
                     }}>
                     <div id="search-simple">
-                        <label className="show-for-sr" htmlFor="top-search">Search 30k cases</label>
-                        <input type="search" placeholder="Search 30k cases" name="q" id="top-search" value={query} onChange={e => setQuery(e.target.value)} required />
+                        <label className="show-for-sr" htmlFor="top-search">Search 47k cases</label>
+                        <input type="search" placeholder="Search 47k cases" name="q" id="top-search" value={query} onChange={e => setQuery(e.target.value)} required />
                         <button type="submit">
                             Search
                         </button>
