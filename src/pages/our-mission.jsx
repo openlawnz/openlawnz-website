@@ -5,7 +5,7 @@ import OurMissionContainer from "@/containers/our-mission/our-mission"
 
 const OurMission = ({data}) => {
     const pageContext = data.allMissionJson.nodes[0]
-    
+
     return (
         <>
             <SEO
@@ -31,6 +31,7 @@ export const query = graphql`
                 content {
                   content_html
                   title
+                  name
                 }
               }
             }
