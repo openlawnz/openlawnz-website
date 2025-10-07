@@ -8,6 +8,10 @@
 	.on-this-page {
 		text-align: center;
 	}
+	#case-information {
+		max-height: 80vh;
+		overflow-y: auto;
+	}
 }
 
 @media only screen and (min-width: 960px) {
