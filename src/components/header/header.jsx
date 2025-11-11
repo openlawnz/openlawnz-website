@@ -17,7 +17,6 @@ const Header = () => {
                 <nav>
                     <Link to="/our-mission" activeClassName="active">Our Mission</Link>
                     <Link to="/how-to-use" activeClassName="active">How to Use</Link>
-                    <Link to="/news" activeClassName="active">News</Link>
                 </nav>
                 <form method="get" onSubmit={(e) => {
                         e.preventDefault()

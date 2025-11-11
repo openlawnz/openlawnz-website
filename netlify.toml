@@ -1,5 +1,5 @@
 [build]
-  command="gatsby build && cd functions/search && npm i && cd ../api && npm i"
+  command="gatsby build && cd functions/search && npm i"
   functions = "functions"
   publish = "public"
 

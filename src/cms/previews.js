@@ -1,6 +1,5 @@
 import React from "react"
 
-import NewsContainer from "@/containers/news/news"
 import { OurMissionContainer } from "@/containers/our-mission/our-mission"
 
 
@@ -8,14 +7,6 @@ export function ourMissionPreview({ entry }) {
   return (
     <PreviewErrorBoundary>
         <OurMissionContainer {...entry.get("data").toJS()} />
-    </PreviewErrorBoundary>
-  )
-}
-
-export function newsPreview({ entry }) {
-  return (
-    <PreviewErrorBoundary>
-        <NewsContainer newsItems={[ entry.get("data").toJS() ]} />
     </PreviewErrorBoundary>
   )
 }

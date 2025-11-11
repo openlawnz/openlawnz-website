@@ -1,6 +1,6 @@
 import { init, registerPreviewTemplate } from "netlify-cms-app"
 
-import { mission,news } from "./collections"
+import { mission } from "./collections"
 import * as previews from "./previews"
 
 window.CMS_MANUAL_INIT = true
@@ -12,7 +12,6 @@ const config = {
     branch: "master",
   },
   collections: [
-    news,
     mission
   ],
   media_folder: "static/assets",
@@ -24,6 +23,5 @@ const config = {
 init({ config })
 
 registerPreviewTemplate("Mission", previews.ourMissionPreview)
-registerPreviewTemplate("news", previews.newsPreview)
 
 
