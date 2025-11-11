@@ -19,7 +19,51 @@ const CaseContainer = (props) => {
     }
     useEffect(() => {
        (async () => {
-            const res = await fetch(`/api?case=${caseId}`) 
+            const query = `
+              query MyQuery { 
+                caseCitation(id: "${caseId}") {
+                  case {
+                    caseName
+                    id
+                    parsersVersion
+                    caseCitations {
+                      citation
+                    }
+                    casesCitedsByCaseCited {
+                      caseByCaseOrigin {
+                        caseName
+                        caseCitations {
+                          id
+                        }
+                      }
+                    }
+                    casesCitedsByCaseOrigin {
+                      caseByCaseCited {
+                        caseName
+                        caseCitations {
+                          id
+                        }
+                      }
+                    }
+                    legislationToCases {
+                      section
+                      legislationId
+                      legislation {
+                        title
+                        link
+                      }
+                    }
+                  }
+                } 
+              }`
+
+            const res = await fetch('https://api.openlaw.nz/graphql', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ query })
+            })
 
             const caseData = await res.json()
 

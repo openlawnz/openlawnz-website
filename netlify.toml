@@ -10,12 +10,5 @@
   force = true
   headers = { X-From = "Netlify" }
 
-[[redirects]]
-  from = "/api"
-  to = "/.netlify/functions/api"
-  status = 200
-  force = true
-  headers = { X-From = "Netlify" }
-
 [functions]
   node_bundler = "esbuild"
