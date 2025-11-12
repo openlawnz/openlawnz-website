@@ -1,7 +1,5 @@
 // From https://github.com/Azure-Samples/azure-search-javascript-samples/blob/master/quickstart/AzureSearchClient.js
 
-import fetch from "node-fetch"
-
 class AzureSearchClient {
     constructor(searchServiceName, adminKey, queryKey, indexName) {
         this.searchServiceName = searchServiceName;
@@ -75,4 +73,4 @@ class AzureSearchClient {
     }
 }
 
-module.exports = AzureSearchClient;
+export default AzureSearchClient;

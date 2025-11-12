@@ -1,6 +1,7 @@
 {
   "name": "api",
   "version": "1.0.0",
+  "type": "module",
   "description": "Hides Search Token from the user",
   "main": "api.js",
   "scripts": {
@@ -13,8 +14,5 @@
     "js"
   ],
   "author": "Netlify",
-  "license": "GPL-3.0",
-  "dependencies": {
-    "node-fetch": "^3.1.1"
-  }
+  "license": "GPL-3.0"
 }

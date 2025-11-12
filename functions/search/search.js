@@ -1,57 +1,61 @@
-const AzureSearchClient = require('./AzureSearchClient.js');
+import AzureSearchClient from './AzureSearchClient.js';
 
 function sanitizeString(str) {
     str = str.replace(/[^a-z0-9áéíóúñü~" \.,_-]/gim, "");
     return str.trim();
 }
 
-exports.handler = async(event) => {
+export default async (request, context) => {
+    const url = new URL(request.url)
+    const q = url.searchParams.get('q')
 
-    //const stage = event.requestContext.stage;
-    //Request should be sent through the correct redirect
+    if (!q) {
+        return Response.json(
+            { error: 'Missing required parameter: q' },
+            { status: 400 }
+        )
+    }
 
-    if (event.queryStringParameters && event.queryStringParameters.q) {
-        const client = new AzureSearchClient(
-            process.env.SERVICE_NAME,
-            process.env.ADMIN_KEY,
-            process.env.QUERY_KEY,
-            process.env.INDEX_NAME + '-' + process.env.SEARCH_ENV
+    const { SERVICE_NAME, ADMIN_KEY, QUERY_KEY, INDEX_NAME, SEARCH_ENV } = context.env
+
+    const client = new AzureSearchClient(
+        SERVICE_NAME,
+        ADMIN_KEY,
+        QUERY_KEY,
+        `${INDEX_NAME}-${SEARCH_ENV}`
+    );
+
+    try {
+        const p = url.searchParams.get('p') || ''
+        const court = url.searchParams.get('court') || ''
+        const location = url.searchParams.get('location') || ''
+
+        const result = await client
+            .queryAsync(
+                sanitizeString(q),
+                sanitizeString(p),
+                sanitizeString(court),
+                sanitizeString(location)
+            )
+            .then(r => r.json());
+
+        const data = {
+            count: result['@odata.count'],
+            results: result.value.map(x => ({
+                caseName: x.caseNames[0],
+                caseDate: x.caseDate,
+                caseCitation: x.caseCitations[0],
+                highlights: x["@search.highlights"]
+            }))
+        };
+
+        return Response.json(data);
+
+    } catch (error) {
+        console.error('Error searching cases:', error);
+        return Response.json(
+            { error: 'Failed searching data', message: error.message },
+            { status: 500 }
         );
-
-        try {
-            const result = await client.queryAsync(`${sanitizeString(event.queryStringParameters.q)}`, `${sanitizeString(event.queryStringParameters.p)}`, `${sanitizeString(event.queryStringParameters.court || '')}`, `${sanitizeString(event.queryStringParameters.location || '')}`).then(r => r.json());
-            return {
-                statusCode: 200,
-                body: JSON.stringify({
-                    count: result['@odata.count'],
-                    results: result.value.map(x => {
-                        return {
-                            caseName: x.caseNames[0],
-                            caseDate: x.caseDate,
-                            caseCitation: x.caseCitations[0],
-                            highlights: x["@search.highlights"]
-                        }
-                    })
-                })
-            };
-
-
-        }
-        catch (ex) {
-
-            return {
-                statusCode: 500,
-                body: "Error"
-            }
-
-        }
-
     }
-    else {
-        return {
-            statusCode: 500,
-            body: "Error"
-        }
-    }
-
 };
