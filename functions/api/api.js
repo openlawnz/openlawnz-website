@@ -1,4 +1,4 @@
-export default async (request, context) => {
+export default async (request) => {
   console.log('API function invoked')
   console.log('Request URL:', request.url)
   console.log('Request method:', request.method)
@@ -16,7 +16,7 @@ export default async (request, context) => {
     )
   }
 
-  const { API_SECRET, API_URL } = context.env
+  const { API_SECRET, API_URL } = process.env
   
   try {
     const caseFields = `

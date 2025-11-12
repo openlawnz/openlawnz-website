@@ -16,7 +16,7 @@ export default async (request, context) => {
         )
     }
 
-    const { SERVICE_NAME, ADMIN_KEY, QUERY_KEY, INDEX_NAME, SEARCH_ENV } = context.env
+    const { SERVICE_NAME, ADMIN_KEY, QUERY_KEY, INDEX_NAME, SEARCH_ENV } = process.env
 
     const client = new AzureSearchClient(
         SERVICE_NAME,
