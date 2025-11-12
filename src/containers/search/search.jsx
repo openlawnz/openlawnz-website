@@ -21,16 +21,13 @@ const SearchPageContainer = () => {
     const [ newCourt, setNewCourt ] = useState(court)
 
     const [ cases, setCases ] = useState({})
-    const [ isLoading, setIsLoading ] = useState(true)
 
     useEffect(() => {
        (async () => {
-           setIsLoading(true)
            const res = await fetch(`/search-cases?q=${query || '""'}&p=${page * 10 || 0}&court='${court || ''}'&location='${location || ''}'`)
 
            const cases = await res.json()
            setCases(cases)
-           setIsLoading(false)
        })()
     }, [query, page, court, location])
 
@@ -52,10 +49,7 @@ const SearchPageContainer = () => {
             <div className="inner">
 				<div className="body-wrap right-on-top">
 					<div className="body-left">
-						<div id="search-body">
-                            {isLoading && !cases.count && <div className="search-loading">Searching...</div>}
-                            {!isLoading && !cases.count && <div className="search-no-results">No results found</div>}
-                            {cases.count > 0 && (
+						<div id="search-body">							
 							<table id="search-results-table">
 								<thead>
 									<tr>
@@ -66,27 +60,38 @@ const SearchPageContainer = () => {
 									</tr>
 								</thead>
 								<tbody id="search-results-table-body">
-                                    {
-                                        cases.results.map(({caseName, caseCitation, caseDate, highlights}, idx) => {
-                                            const highlightText = highlights.caseText[0]
-                                            return (
-                                                <tr key={idx}>
-                                                    <td className="case-name-column"><Link to={`/case/${caseCitation.id}`}>{caseName}</Link></td>
-                                                    <td className="citation-column">{caseCitation.citation}</td>
-                                                    <td className="date-column">{caseDate.substring(0,10)}</td>
-                                                    <td 
-                                                        className="snippet-column" 
-                                                        dangerouslySetInnerHTML={{
-                                                            __html : sanitizeHtml(highlightText.length > 300 ? highlightText.substring(0,300) + '...' : highlightText)
-                                                        }}
-                                                    />
-                                                </tr>
-                                            )
-                                        })
-                                    }
+                                   {
+                                       (cases.count) ?
+                                       <>   
+                                        {
+                                            cases.results.map(({caseName, caseCitation, caseDate, highlights}, idx) => {
+                                                const highlightText = highlights.caseText[0]
+                                                return (
+                                                    <tr key={idx}>
+                                                        <td className="case-name-column"><Link to={`/case/${caseCitation.id}`}>{caseName}</Link></td>
+                                                        <td className="citation-column">{caseCitation.citation}</td>
+                                                        <td className="date-column">{caseDate.substring(0,10)}</td>
+                                                        <td 
+                                                            className="snippet-column" 
+                                                            dangerouslySetInnerHTML={{
+                                                                __html : sanitizeHtml(highlightText.length > 300 ? highlightText.substring(0,300) + '...' : highlightText)
+                                                            }}
+                                                        />
+                                                    </tr>
+                                                )
+                                            })
+                                        }   
+                                       </>
+                                       :
+                                       <tr className="no-results-found"> 
+                                            <td>No results found</td>
+                                            <td>---</td>
+                                            <td>---</td>
+                                            <td>---</td>
+                                        </tr>
+                                   }
 								</tbody>
 							</table>
-                            )}
 							<nav id="pagination">
                                 <ReactPaginate
                                     previousLabel={'Previous'}

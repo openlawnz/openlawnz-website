@@ -9,7 +9,6 @@ import SEO from "@/components/seo"
 const CaseContainer = (props) => {
     const [ currentCase, setCurrentCase ] = useState({})
     const [adobeDCView, setAdobeDCView] = useState(null)
-    const [ isLoading, setIsLoading ] = useState(true)
 
     const caseId = props['*'] || "No case"
 
@@ -20,13 +19,11 @@ const CaseContainer = (props) => {
     }
     useEffect(() => {
        (async () => {
-            setIsLoading(true)
             const res = await fetch(`/api?case=${caseId}`) 
 
             const caseData = await res.json()
 
             setCurrentCase(caseData.data?.caseCitation?.case)
-            setIsLoading(false)
        })()
    }, [caseId, setCurrentCase])
 
@@ -72,7 +69,7 @@ const CaseContainer = (props) => {
                 description="OpenLaw NZ is an open-source legal data platform. Our goal is to improve the accessibility of case law 
                 and other legal information in New Zealand. We want to make it easier for all New Zealanders to understand law. "
             />
-            <HeroSmall title={isLoading ? "Loading..." : (currentCase.caseName ? currentCase.caseName : caseId)}/>
+            <HeroSmall title={currentCase.caseName ? currentCase.caseName : caseId}/>
 
         
             <div className="inner">
@@ -84,10 +81,6 @@ const CaseContainer = (props) => {
 					</div>
 					<div className="body-right">
 						<div id="case-information" className="on-this-page">
-                            {isLoading ? (
-                                <div>Loading...</div>
-                            ) : (
-                            <>
 							<h2>Information</h2>
 							<h3>Cites</h3>
 							<ul id="cites">
@@ -176,8 +169,6 @@ const CaseContainer = (props) => {
 								<p>This data is automatically extracted from PDF files. While OpenLaw NZ makes every effort to provide accurate data, it is not something we can guarantee.</p>
 								<p>You can view the OpenLaw NZ source code on <a href="https://github.com/openlawnz">Github</a></p>
 							</div>
-                            </>
-                            )}
 							
 						</div>
 
