@@ -147,6 +147,7 @@ main .inner {
 
 .body-right {
 	flex: 1;
+	position: relative;
 }
 
 .content-page a {

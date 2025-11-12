@@ -14,6 +14,8 @@
 	.on-this-page {
 		position: sticky;
 		top: 30px;
+		overflow-y: auto;
+        height: calc(100vh - 30px);
 	}
 }
 
