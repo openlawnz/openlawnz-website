@@ -64,6 +64,21 @@
           "title": "You can use our search for any purpose including commercial purposes."
         }
       ]
+    },
+    {
+      "title": "Directors",
+      "type": "directors",
+      "content": [
+        {
+          "name": "Andrew Easterbrook",
+          "title": "CEO",
+          "content_html": "Andrew is a lawyer, and has worked in technology law, civil litigation and family law since 2009. He has been a Member of the Auckland District Law Society Technology & Law Committee since 2012, and is experienced in web and software development. Andrew went to university at Victoria, Wellington, and now lives in Whangarei."        },
+        {
+          "name": "William Parry",
+          "title": "CTO",
+          "content_html": "William brings 15 years of tech experience across enterprise, advertising and small businesses including 8 years working with open data in projects and hackathons. He has run community coding classes and is passionate about empowering disadvantaged people with technology. William went to university at Victoria, Wellington, and now lives in Sydney."
+        }
+      ]
     }
   ],
   "title": "Our Mission"

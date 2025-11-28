@@ -15,45 +15,40 @@ export const OurMissionContainer = ({title, modules}) => {
                 <div className="body-wrap content-page right-on-top">
                     <div className="body-left">
                         {
-                            modules.map(({ title, content }, idx) => (
-                                <article id={toSlug(title)} className="content-section" key={idx}>
-                                    <h2 className="body-title">{title}</h2>
-                                    {
-                                        content.map(({ content_html }, idx) => (
-                                            <p key={idx} dangerouslySetInnerHTML={{ __html: sanitizeHtml(content_html) }} />
-                                        ))
-                                    }
-                                </article>
-                            ))
-                        }
+                            modules.map(({ title, content }, idx) => {
+                                if (title === "Directors") {
+                                    return (
+                                        <div id="directors" className="content-section" key={title}>
+                                            <h2 className="body-title">Directors</h2>
+                                            <div className="directors-segments">
+                                                {
+                                                    content.map(({ content_html, name, title: roleTitle }, idx) => {
+                                                        return (
+                                                            <div key={idx}>
+                                                                <img src={(name === "Andrew Easterbrook") ? AndrewImage : WillImage} alt={name} />
+                                                                <h3>{name}, {roleTitle}</h3>
+                                                                <p dangerouslySetInnerHTML={{ __html: sanitizeHtml(content_html) }} />
+                                                            </div>
+                                                        )
+                                                    })
+                                                }
+                                            </div>
+                                        </div>
+                                    )
+                                }
 
-                        <div id="directors" className="content-section">
-                            <h2 className="body-title">Directors</h2>
-                            <div className="directors-segments">
-                                <div>
-                                    <img src={AndrewImage} alt="Andrew Easterbrook" />
-                                    <h3>Andrew Easterbrook, CEO</h3>
-                                    <p>
-                                        Andrew is a lawyer, and has worked in technology law, civil litigation and
-                                        family law since 2009. He has been a Member of the Auckland District Law Society
-                                        Technology & Law Committee since 2012, and is experienced in web and software
-                                        development. Andrew went to university at Victoria, Wellington, and now lives in
-                                        Whangarei.
-                                </p>
-                                </div>
-                                <div>
-                                    <img src={WillImage} alt="William Parry" />
-                                    <h3>William Parry, CTO</h3>
-                                    <p>
-                                        William brings 15 years of tech experience across enterprise, advertising and
-                                        small businesses including 8 years working with open data in projects and
-                                        hackathons. He has run community coding classes and is passionate about
-                                        empowering disadvantaged people with technology. William went to university at
-                                        Victoria, Wellington, and now lives in Sydney.
-                                </p>
-                                </div>
-                            </div>
-                        </div>
+                                return (
+                                    <article id={toSlug(title)} className="content-section" key={idx}>
+                                        <h2 className="body-title">{title}</h2>
+                                        {
+                                            content.map(({ content_html }, idx) => (
+                                                <p key={idx} dangerouslySetInnerHTML={{ __html: sanitizeHtml(content_html) }} />
+                                            ))
+                                        }
+                                    </article>
+                                )
+                                })
+                        }
                     </div>
 
                     <SideNav heading="On this page" items={modules.map(({title}) => ({ text: title, address: `#${title}`}))}/>
