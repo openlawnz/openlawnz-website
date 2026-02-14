@@ -25,9 +25,18 @@ const SearchPageContainer = () => {
     const [ newCourt, setNewCourt ] = useState(court)
 
     const [ cases, setCases ] = useState({})
+    const [ isLoadingCases, setIsLoadingCases ] = useState(true)
+    const [ hasLoadedCases, setHasLoadedCases ] = useState(false)
     const [ turnstileToken, setTurnstileToken ] = useState(null)
     const [ turnstileError, setTurnstileError ] = useState(null)
     const turnstileRef = useRef(null)
+
+    const safePage = Number.isInteger(page) && page >= 0 ? page : 0
+    const totalCount = Number.isFinite(cases?.count) ? cases.count : 0
+    const pageCount = totalCount > 0 ? Math.ceil(totalCount / 10) : 0
+    const currentPage = pageCount > 0 ? Math.min(safePage, pageCount - 1) : 0
+    const isWaitingForTurnstile = Boolean(TURNSTILE_SITE_KEY && !turnstileToken)
+    const shouldShowTurnstileWaitState = isWaitingForTurnstile && !hasLoadedCases
 
     // Callback when Turnstile completes verification
     const onTurnstileCallback = useCallback((token) => {
@@ -38,9 +47,19 @@ const SearchPageContainer = () => {
     // Callback when Turnstile expires (token needs refresh)
     const onTurnstileExpired = useCallback(() => {
         setTurnstileToken(null)
-        // Reset the widget to get a new token
-        if (window.turnstile && turnstileRef.current) {
+        if (!TURNSTILE_SITE_KEY || !window.turnstile || !turnstileRef.current) {
+            return
+        }
+
+        const hasRenderedWidget = turnstileRef.current.querySelector("iframe, input[name='cf-turnstile-response']")
+        if (!hasRenderedWidget) {
+            return
+        }
+
+        try {
             window.turnstile.reset(turnstileRef.current)
+        } catch {
+            return
         }
     }, [])
 
@@ -67,36 +86,58 @@ const SearchPageContainer = () => {
     useEffect(() => {
        (async () => {
            // Wait for Turnstile token if site key is configured
-           if (TURNSTILE_SITE_KEY && !turnstileToken) {
+           if (isWaitingForTurnstile) {
                return
            }
 
-           const headers = {}
-           if (turnstileToken) {
-               headers['X-Turnstile-Token'] = turnstileToken
-           }
+           setIsLoadingCases(true)
 
-           const res = await fetch(
-               `/search-cases?q=${query || '""'}&p=${page * 10 || 0}&court='${court || ''}'&location='${location || ''}'`,
-               { headers }
-           )
+           try {
+               const headers = {}
+               if (turnstileToken) {
+                   headers['X-Turnstile-Token'] = turnstileToken
+               }
 
-           if (res.status === 403) {
-               setTurnstileError('Verification failed. Please refresh the page.')
+               const res = await fetch(
+                   `/search-cases?q=${query || '""'}&p=${safePage * 10}&court='${court || ''}'&location='${location || ''}'`,
+                   { headers }
+               )
+
+               if (res.status === 403) {
+                   setTurnstileError('Verification failed. Please refresh the page.')
+                   setCases({})
+                   setHasLoadedCases(true)
+                   return
+               }
+
+               const cases = await res.json()
+               setCases(cases)
+               setHasLoadedCases(true)
+           } catch {
                setCases({})
-               return
+               setHasLoadedCases(true)
+           } finally {
+               setIsLoadingCases(false)
            }
-
-           const cases = await res.json()
-           setCases(cases)
        })()
-    }, [query, page, court, location, turnstileToken])
+    }, [query, safePage, court, location, turnstileToken, isWaitingForTurnstile])
 
     // Reset Turnstile widget to get a fresh token
     const resetTurnstile = useCallback(() => {
         setTurnstileToken(null)
-        if (window.turnstile && turnstileRef.current) {
+        if (!TURNSTILE_SITE_KEY || !window.turnstile || !turnstileRef.current) {
+            return
+        }
+
+        const hasRenderedWidget = turnstileRef.current.querySelector("iframe, input[name='cf-turnstile-response']")
+        if (!hasRenderedWidget) {
+            return
+        }
+
+        try {
             window.turnstile.reset(turnstileRef.current)
+        } catch {
+            return
         }
     }, [])
 
@@ -133,64 +174,78 @@ const SearchPageContainer = () => {
 				<div className="body-wrap right-on-top">
 					<div className="body-left">
 						<div id="search-body">							
-							<table id="search-results-table">
-								<thead>
-									<tr>
-										<th className="case-name-column">Case name</th>
-										<th className="citation-column">Citation</th>
-										<th className="date-column">Date</th>
-										<th className="snippet-column">Snippet</th>
-									</tr>
-								</thead>
-								<tbody id="search-results-table-body">
-                                   {
-                                       (cases.count) ?
-                                       <>   
-                                        {
-                                            cases.results.map(({caseName, caseCitation, caseDate, highlights}, idx) => {
-                                                const highlightText = highlights.caseText[0]
-                                                return (
-                                                    <tr key={idx}>
-                                                        <td className="case-name-column"><Link to={`/case/${caseCitation.id}`}>{caseName}</Link></td>
-                                                        <td className="citation-column">{caseCitation.citation}</td>
-                                                        <td className="date-column">{caseDate.substring(0,10)}</td>
-                                                        <td 
-                                                            className="snippet-column" 
-                                                            dangerouslySetInnerHTML={{
-                                                                __html : sanitizeHtml(highlightText.length > 300 ? highlightText.substring(0,300) + '...' : highlightText)
-                                                            }}
-                                                        />
-                                                    </tr>
-                                                )
-                                            })
-                                        }   
-                                       </>
-                                       :
-                                       <tr className="no-results-found"> 
-                                            <td>No results found</td>
-                                            <td>---</td>
-                                            <td>---</td>
-                                            <td>---</td>
-                                        </tr>
-                                   }
-								</tbody>
-							</table>
-							<nav id="pagination">
-                                <ReactPaginate
-                                    previousLabel={'Previous'}
-                                    nextLabel={'Next'}
-                                    breakLabel={'...'}
-                                    breakClassName={'break-me'}
-                                    pageCount={Math.ceil(cases.count / 10)}
-                                    marginPagesDisplayed={2}
-                                    pageRangeDisplayed={5}
-                                    forcePage={page}
-                                    onPageChange={(e) => {setPage(e.selected)}}
-                                    containerClassName={'pagination'}
-                                    subContainerClassName={'pages pagination'}
-                                    activeClassName={'active'}
-                                />
-							</nav>
+                            {shouldShowTurnstileWaitState ? (
+								<div className="search-results-state">
+									Complete verification to view search results.
+								</div>
+							) : isLoadingCases && !hasLoadedCases ? (
+								<div className="search-results-state">
+									Loading search results...
+								</div>
+							) : (
+								<>
+									<table id="search-results-table">
+										<thead>
+											<tr>
+												<th className="case-name-column">Case name</th>
+												<th className="citation-column">Citation</th>
+												<th className="date-column">Date</th>
+												<th className="snippet-column">Snippet</th>
+											</tr>
+										</thead>
+										<tbody id="search-results-table-body">
+                                           {
+                                               (cases.count) ?
+                                               <>
+                                                {
+                                                    cases.results.map(({caseName, caseCitation, caseDate, highlights}, idx) => {
+                                                        const highlightText = highlights.caseText[0]
+                                                        return (
+                                                            <tr key={idx}>
+                                                                <td className="case-name-column"><Link to={`/case/${caseCitation.id}`}>{caseName}</Link></td>
+                                                                <td className="citation-column">{caseCitation.citation}</td>
+                                                                <td className="date-column">{caseDate.substring(0,10)}</td>
+                                                                <td
+                                                                    className="snippet-column"
+                                                                    dangerouslySetInnerHTML={{
+                                                                        __html : sanitizeHtml(highlightText.length > 300 ? highlightText.substring(0,300) + '...' : highlightText)
+                                                                    }}
+                                                                />
+                                                            </tr>
+                                                        )
+													})
+												}
+											   </>
+											   :
+											   <tr className="no-results-found">
+													<td>No results found</td>
+													<td>---</td>
+													<td>---</td>
+													<td>---</td>
+											   </tr>
+                                           }
+										</tbody>
+									</table>
+									{pageCount > 1 && (
+										<nav id="pagination">
+                                            <ReactPaginate
+                                                previousLabel={'Previous'}
+                                                nextLabel={'Next'}
+                                                breakLabel={'...'}
+                                                breakClassName={'break-me'}
+                                                pageCount={pageCount}
+                                                marginPagesDisplayed={2}
+                                                pageRangeDisplayed={5}
+                                                forcePage={currentPage}
+                                                onPageChange={(e) => {setPage(e.selected)}}
+                                                containerClassName={'pagination'}
+                                                subContainerClassName={'pages pagination'}
+                                                activeClassName={'active'}
+                                            />
+										</nav>
+									)}
+								</>
+							)}
 						</div>						
 					</div>
 					<div className="body-right">
