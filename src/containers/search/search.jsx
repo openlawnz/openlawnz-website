@@ -30,6 +30,7 @@ const SearchPageContainer = () => {
     const [ turnstileToken, setTurnstileToken ] = useState(null)
     const [ turnstileError, setTurnstileError ] = useState(null)
     const turnstileRef = useRef(null)
+    const turnstileWidgetIdRef = useRef(null)
 
     const safePage = Number.isInteger(page) && page >= 0 ? page : 0
     const totalCount = Number.isFinite(cases?.count) ? cases.count : 0
@@ -47,17 +48,12 @@ const SearchPageContainer = () => {
     // Callback when Turnstile expires (token needs refresh)
     const onTurnstileExpired = useCallback(() => {
         setTurnstileToken(null)
-        if (!TURNSTILE_SITE_KEY || !window.turnstile || !turnstileRef.current) {
-            return
-        }
-
-        const hasRenderedWidget = turnstileRef.current.querySelector("iframe, input[name='cf-turnstile-response']")
-        if (!hasRenderedWidget) {
+        if (!TURNSTILE_SITE_KEY || !window.turnstile || turnstileWidgetIdRef.current === null) {
             return
         }
 
         try {
-            window.turnstile.reset(turnstileRef.current)
+            window.turnstile.reset(turnstileWidgetIdRef.current)
         } catch {
             return
         }
@@ -69,19 +65,66 @@ const SearchPageContainer = () => {
         setTurnstileToken(null)
     }, [])
 
-    // Initialize Turnstile widget after script loads
-    useEffect(() => {
-        // Expose callbacks globally for Turnstile
-        window.onTurnstileCallback = onTurnstileCallback
-        window.onTurnstileExpired = onTurnstileExpired
-        window.onTurnstileError = onTurnstileError
+    const renderTurnstile = useCallback(() => {
+        if (!TURNSTILE_SITE_KEY || !turnstileRef.current || !window.turnstile || turnstileWidgetIdRef.current !== null) {
+            return false
+        }
 
-        return () => {
-            delete window.onTurnstileCallback
-            delete window.onTurnstileExpired
-            delete window.onTurnstileError
+        try {
+            turnstileWidgetIdRef.current = window.turnstile.render(turnstileRef.current, {
+                sitekey: TURNSTILE_SITE_KEY,
+                callback: onTurnstileCallback,
+                "expired-callback": onTurnstileExpired,
+                "error-callback": onTurnstileError,
+                theme: "light"
+            })
+            return true
+        } catch {
+            return false
         }
     }, [onTurnstileCallback, onTurnstileExpired, onTurnstileError])
+
+    useEffect(() => {
+        if (!TURNSTILE_SITE_KEY) {
+            return
+        }
+
+        let attempts = 0
+        const maxAttempts = 30
+        let timeoutId = null
+
+        const tryRenderTurnstile = () => {
+            if (renderTurnstile()) {
+                return
+            }
+
+            attempts += 1
+            if (attempts < maxAttempts) {
+                timeoutId = window.setTimeout(tryRenderTurnstile, 150)
+            }
+        }
+
+        tryRenderTurnstile()
+
+        return () => {
+            if (timeoutId) {
+                window.clearTimeout(timeoutId)
+            }
+
+            if (window.turnstile && turnstileWidgetIdRef.current !== null) {
+                try {
+                    window.turnstile.remove(turnstileWidgetIdRef.current)
+                } catch {
+                    // no-op
+                }
+            }
+
+            turnstileWidgetIdRef.current = null
+            if (turnstileRef.current) {
+                turnstileRef.current.innerHTML = ""
+            }
+        }
+    }, [renderTurnstile])
 
     useEffect(() => {
        (async () => {
@@ -125,21 +168,21 @@ const SearchPageContainer = () => {
     // Reset Turnstile widget to get a fresh token
     const resetTurnstile = useCallback(() => {
         setTurnstileToken(null)
-        if (!TURNSTILE_SITE_KEY || !window.turnstile || !turnstileRef.current) {
+        if (!TURNSTILE_SITE_KEY || !window.turnstile) {
             return
         }
 
-        const hasRenderedWidget = turnstileRef.current.querySelector("iframe, input[name='cf-turnstile-response']")
-        if (!hasRenderedWidget) {
+        if (turnstileWidgetIdRef.current === null) {
+            renderTurnstile()
             return
         }
 
         try {
-            window.turnstile.reset(turnstileRef.current)
+            window.turnstile.reset(turnstileWidgetIdRef.current)
         } catch {
             return
         }
-    }, [])
+    }, [renderTurnstile])
 
     // Reset Turnstile when query params change (new search without full page refresh)
     useEffect(() => {
@@ -254,12 +297,7 @@ const SearchPageContainer = () => {
 							<div className="turnstile-container">
 								<div
 									ref={turnstileRef}
-									className="cf-turnstile"
-									data-sitekey={TURNSTILE_SITE_KEY}
-									data-callback="onTurnstileCallback"
-									data-expired-callback="onTurnstileExpired"
-									data-error-callback="onTurnstileError"
-									data-theme="light"
+                                    className="turnstile-widget"
 								/>
 								{turnstileError && (
 									<div className="turnstile-error">
