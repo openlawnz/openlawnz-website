@@ -15,6 +15,9 @@ const CaseContainer = (props) => {
   const scriptErrorRef = useRef(false)
 
   const caseId = props["*"] || "No case"
+  const pdfUrl = currentCase.id
+    ? `https://openlawnz-pdfs-prod.s3-ap-southeast-2.amazonaws.com/${currentCase.id}`
+    : ""
 
   const adobeUIConfig = useMemo(
     () => ({
@@ -109,7 +112,7 @@ const CaseContainer = (props) => {
         {
           content: {
             location: {
-              url: `https://openlawnz-pdfs-prod.s3-ap-southeast-2.amazonaws.com/${currentCase.id}`,
+              url: pdfUrl,
             },
           },
           metaData: { fileName: `${currentCase.caseName || "case"}.pdf` },
@@ -119,7 +122,7 @@ const CaseContainer = (props) => {
       .catch(() => {
         setPdfError(true)
       })
-  }, [adobeDCView, adobeUIConfig, currentCase.caseName, currentCase.id])
+  }, [adobeDCView, adobeUIConfig, currentCase.caseName, currentCase.id, pdfUrl])
 
   return (
     <Layout>
@@ -135,21 +138,24 @@ const CaseContainer = (props) => {
           <div className="body-left">
             <div id="pdf">
               {pdfError ? (
-                <p className="pdf-error">
-                  The PDF viewer failed to load. You can{" "}
-                  {currentCase.id ? (
-                    <a
-                      href={`https://openlawnz-pdfs-prod.s3-ap-southeast-2.amazonaws.com/${currentCase.id}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      download the PDF directly
-                    </a>
-                  ) : (
-                    "try refreshing the page"
-                  )}
-                  .
-                </p>
+                <div>
+                  <p className="pdf-error">
+                    The PDF viewer failed to load.
+                    {currentCase.id ? (
+                      <>
+                        {" "}
+                        Showing the browser PDF view instead. You can also{" "}
+                        <a href={pdfUrl} target="_blank" rel="noopener noreferrer">
+                          download the PDF directly
+                        </a>
+                        .
+                      </>
+                    ) : (
+                      " Try refreshing the page."
+                    )}
+                  </p>
+                  {currentCase.id && <iframe className="pdf-fallback-frame" src={pdfUrl} title="Case PDF" />}
+                </div>
               ) : (
                 <div id="adobe-dc-view"></div>
               )}
