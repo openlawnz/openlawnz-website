@@ -11,9 +11,17 @@ import HeroSmall from "@/components/hero/hero-small"
 import Layout from "@/components/layout/layout"
 import SEO from "@/components/seo"
 
-// Turnstile site key - this is public and safe to expose
-const TURNSTILE_SITE_KEY = process.env.GATSBY_TURNSTILE_SITE_KEY || ""
-const IS_TURNSTILE_ENABLED = Boolean(TURNSTILE_SITE_KEY && process.env.NODE_ENV !== "development")
+// Turnstile site key - this is public and safe to expose.
+// In development, fall back to Cloudflare's "always passes" test key so the
+// widget renders visually but never blocks.
+// https://developers.cloudflare.com/turnstile/troubleshooting/testing/
+//
+// Webpack DefinePlugin replaces process.env.NODE_ENV with a string literal at
+// build time, so the ternaries below become dead code that Terser strips out
+// of production bundles.
+const TURNSTILE_SITE_KEY = process.env.GATSBY_TURNSTILE_SITE_KEY
+  || (process.env.NODE_ENV !== "production" ? "1x00000000000000000000AA" : "")
+const IS_TURNSTILE_ENABLED = Boolean(TURNSTILE_SITE_KEY)
 
 const SANITIZE_SNIPPET_OPTIONS = {
   allowedTags: ["em"],
@@ -183,8 +191,16 @@ const SearchPageContainer = () => {
     }
   }, [])
 
-  // Callback on Turnstile error
+  // Callback on Turnstile error — in dev, bypass so searches aren't blocked.
+  // The process.env.NODE_ENV check is replaced at build time by Webpack's
+  // DefinePlugin, so the dev branch is dead-code-eliminated in production.
   const onTurnstileError = useCallback(() => {
+    if (process.env.NODE_ENV !== "production") {
+      // Turnstile can't reach Cloudflare from dev containers; treat as passed
+      setTurnstileToken("DEV_BYPASS")
+      setTurnstileError(null)
+      return
+    }
     setTurnstileError("Verification failed. Please refresh the page.")
     setTurnstileToken(null)
   }, [])
@@ -484,12 +500,6 @@ const SearchPageContainer = () => {
       ) : (
         <div className="inner search-page">
           <div className="search-landing">
-            {IS_TURNSTILE_ENABLED && (
-              <div className="turnstile-container">
-                <div ref={turnstileRef} className="turnstile-widget" />
-                {turnstileError && <div className="turnstile-error">{turnstileError}</div>}
-              </div>
-            )}
             <div id="advanced-search" className="advanced-search-landing">
               <AdvancedSearchForm
                 query={query}

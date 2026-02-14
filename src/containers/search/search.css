@@ -1,5 +1,5 @@
 #search-body {
-  margin-top: var(--margin-top-between-sections);
+  margin-top: calc(var(--margin-top-between-sections) / 2);
 }
 
 .search-results-card {
