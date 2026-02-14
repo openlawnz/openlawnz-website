@@ -145,3 +145,19 @@
 .active {
     color: white;
 }
+
+/* Turnstile widget container */
+.turnstile-container {
+	margin-top: calc(var(--margin-top-between-sections) / 2);
+}
+
+.turnstile-error {
+	color: #c00;
+	font-size: 0.875rem;
+	margin-top: 0.5rem;
+}
+
+/* Reduce margin on Advanced section when Turnstile is present */
+.turnstile-container + #advanced-search.on-this-page {
+	margin-top: calc(var(--margin-top-between-sections) / 2);
+}

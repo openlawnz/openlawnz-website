@@ -92,8 +92,24 @@ const SearchPageContainer = () => {
        })()
     }, [query, page, court, location, turnstileToken])
 
+    // Reset Turnstile widget to get a fresh token
+    const resetTurnstile = useCallback(() => {
+        setTurnstileToken(null)
+        if (window.turnstile && turnstileRef.current) {
+            window.turnstile.reset(turnstileRef.current)
+        }
+    }, [])
+
+    // Reset Turnstile when query params change (new search without full page refresh)
+    useEffect(() => {
+        resetTurnstile()
+    }, [query, court, location, resetTurnstile])
+
     const handleAdvancedSearch = (event) => {
         event.preventDefault()
+
+        // Reset turnstile before navigating so it will get a fresh token
+        resetTurnstile()
 
         navigate(`/search?q=${newQuery || ''}&p=${0}&court=${newCourt || ''}&location=${newLocation || ''}`)
     }
@@ -180,7 +196,7 @@ const SearchPageContainer = () => {
 					<div className="body-right">
 						{/* Turnstile widget - Managed mode may show checkbox to some users */}
 						{TURNSTILE_SITE_KEY && (
-							<div style={{ marginBottom: turnstileError ? '0.5rem' : '0' }}>
+							<div className="turnstile-container">
 								<div
 									ref={turnstileRef}
 									className="cf-turnstile"
@@ -191,7 +207,7 @@ const SearchPageContainer = () => {
 									data-theme="light"
 								/>
 								{turnstileError && (
-									<div style={{ color: '#c00', fontSize: '0.875rem', marginTop: '0.5rem' }}>
+									<div className="turnstile-error">
 										{turnstileError}
 									</div>
 								)}
