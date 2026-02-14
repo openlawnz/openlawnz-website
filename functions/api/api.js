@@ -1,23 +1,48 @@
+const REQUEST_TIMEOUT_MS = 8000
+const CASE_CITATION_PATTERN = /^[a-z0-9-]{1,120}$/i
+const IS_PRODUCTION = process.env.NODE_ENV === "production" || process.env.CONTEXT === "production"
+
+function buildErrorResponse(status, message) {
+  return Response.json({ error: message }, { status })
+}
+
+async function fetchWithTimeout(url, options, timeoutMs = REQUEST_TIMEOUT_MS) {
+  const controller = new AbortController()
+  const timeoutId = setTimeout(() => controller.abort(), timeoutMs)
+
+  try {
+    return await fetch(url, { ...options, signal: controller.signal })
+  } finally {
+    clearTimeout(timeoutId)
+  }
+}
+
+function logError(message, error) {
+  if (IS_PRODUCTION) {
+    console.error(message)
+    return
+  }
+
+  console.error(message, error)
+}
+
 export default async (request) => {
-  console.log('API function invoked')
-  console.log('Request URL:', request.url)
-  console.log('Request method:', request.method)
-  
   const url = new URL(request.url)
-  const caseCitation = url.searchParams.get('case')
-  
-  console.log('Case citation parameter:', caseCitation)
-  
+  const caseCitation = url.searchParams.get("case") || ""
+
   if (!caseCitation) {
-    console.warn('Missing case parameter in request')
-    return Response.json(
-      { error: 'Missing required parameter: case' },
-      { status: 400 }
-    )
+    return buildErrorResponse(400, "Missing required parameter: case")
+  }
+
+  if (!CASE_CITATION_PATTERN.test(caseCitation)) {
+    return buildErrorResponse(400, "Invalid case parameter")
   }
 
   const { API_SECRET, API_URL } = process.env
-  
+  if (!API_SECRET || !API_URL) {
+    return buildErrorResponse(500, "Service misconfigured")
+  }
+
   try {
     const caseFields = `
       case {
@@ -53,79 +78,40 @@ export default async (request) => {
         }
       }
     `
-      
+
     const query = `
-      query MyQuery { 
-        caseCitation(id: "${caseCitation}") {
-          ${caseFields} 
-        } 
-      }` 
+      query CaseByCitation($id: String!) {
+        caseCitation(id: $id) {
+          ${caseFields}
+        }
+      }
+    `
 
-    console.log('Preparing GraphQL request to:', `${API_URL}/graphql`)
-    console.log('Query prepared for case citation:', caseCitation)
-
-    const fetchStartTime = Date.now()
-    const res = await fetch(`${API_URL}/graphql`, {
-      method: 'POST',
-      body: JSON.stringify({ query }),
+    const res = await fetchWithTimeout(`${API_URL}/graphql`, {
+      method: "POST",
+      body: JSON.stringify({
+        query,
+        variables: { id: caseCitation },
+      }),
       headers: {
         "x-api-key": API_SECRET,
-        "Content-Type": "application/json"
-      }
+        "Content-Type": "application/json",
+      },
     })
-    const fetchDuration = Date.now() - fetchStartTime
-
-    console.log('GraphQL request completed')
-    console.log('Response status:', res.status, res.statusText)
-    console.log('Response time:', fetchDuration, 'ms')
-    console.log('Response headers:', Object.fromEntries(res.headers.entries()))
 
     if (!res.ok) {
-      const errorText = await res.text()
-      console.error('API request failed with status:', res.status)
-      console.error('Error response body:', errorText)
-      
-      return Response.json(
-        { 
-          error: 'API request failed', 
-          status: res.status,
-          statusText: res.statusText,
-          details: errorText
-        },
-        { status: 502 }
-      )
+      return buildErrorResponse(502, "Upstream API request failed")
     }
 
-    console.log('Parsing JSON response')
     const data = await res.json()
-    console.log('Response parsed successfully')
-    console.log('Response data keys:', Object.keys(data))
-    
     if (data.errors) {
-      console.error('GraphQL errors in response:', JSON.stringify(data.errors, null, 2))
+      logError("GraphQL response contained errors", data.errors)
+      return buildErrorResponse(502, "Upstream API request failed")
     }
-    
-    console.log('Returning successful response')
+
     return Response.json(data)
-    
   } catch (error) {
-    console.error('=== ERROR CAUGHT ===')
-    console.error('Error type:', error.constructor.name)
-    console.error('Error message:', error.message)
-    console.error('Error stack:', error.stack)
-    
-    if (error.cause) {
-      console.error('Error cause:', error.cause)
-    }
-    
-    return Response.json(
-      { 
-        error: 'Failed fetching data', 
-        message: error.message,
-        type: error.constructor.name,
-        stack: error.stack
-      },
-      { status: 500 }
-    )
+    logError("Failed fetching data", error)
+    return buildErrorResponse(500, "Failed fetching data")
   }
 }

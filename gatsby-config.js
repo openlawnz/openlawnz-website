@@ -1,21 +1,26 @@
-const path = require('path')
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
+const path = require("path")
 
 module.exports = {
+  trailingSlash: `ignore`,
   siteMetadata: {
     title: `OpenLaw NZ`,
     description: `New Free Legal Research Platform for New Zealand`,
     author: `OpenLaw NZ`,
-    siteUrl: `https://openlaw.nz`
+    siteUrl: `https://openlaw.nz`,
   },
   plugins: [
     {
-      resolve: 'gatsby-plugin-eslint',
+      resolve: "gatsby-plugin-eslint",
       options: {
         stages: ["develop"],
         rulePaths: [`${process.cwd()}/node_modules/gatsby/dist/utils/eslint-rules`],
         extensions: ["js", "jsx", "ts", "tsx"],
         exclude: ["node_modules", "bower_components", ".cache", "public"],
-      }
+      },
     },
     "gatsby-transformer-json",
     {
@@ -44,26 +49,40 @@ module.exports = {
           "@/containers": path.resolve(__dirname, "src/containers"),
           "@/helpers": path.resolve(__dirname, "src/helpers"),
         },
-        extensions: ["js", "jsx", "css", "scss", "svg", "png", "json", "jpg"]
-      }
+        extensions: ["js", "jsx", "css", "scss", "svg", "png", "json", "jpg"],
+      },
     },
     "gatsby-plugin-use-query-params",
-    `gatsby-plugin-sitemap`,
+    {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        resolveSiteUrl: () => `https://openlaw.nz`,
+        query: `
+          {
+            allSitePage {
+              nodes {
+                path
+              }
+            }
+          }
+        `,
+        resolvePages: ({ allSitePage: { nodes } }) => nodes,
+        serialize: ({ path: pagePath }) => ({
+          url: pagePath,
+        }),
+        excludes: ["/dev-404-page", "/404", "/404.html", "/offline-plugin-app-shell-fallback"],
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
-
   ],
 }
 
 exports.onCreateWebpackConfig = ({ actions }) => {
   actions.setWebpackConfig({
     infrastructureLogging: {
-      level: 'error',
+      level: "error",
     },
   })
 }
-
-require("dotenv").config({
-  path: `.env.${process.env.NODE_ENV}`,
-})

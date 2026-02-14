@@ -1,13 +1,15 @@
 # openlawnz-website
+
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 ![Dependabot](https://badgen.net/dependabot/openlawnz/openlawnz-web/117378835=?icon=dependabot)
 
 ## Running
-Create a `.env` file in the root of the project with the content copied of `env-sample`. 
+
+Create a `.env` file in the root of the project with the content copied of `env-sample`.
 
 ## Building
 
-	gatsby build
+    gatsby build
 
 ## Bot Protection (Cloudflare Turnstile)
 
@@ -31,14 +33,20 @@ TURNSTILE_SECRET_KEY=your-secret-key       # Private, server-side only
 
 **Note:** The `GATSBY_` prefix is required for Gatsby to expose the variable to the browser. The site key is safe to expose publicly.
 
+## Local Mock Search Service
+
+When running on localhost in the browser, search uses MSW mock data for `/search-cases`.
+
+- This keeps frontend development working without local functions.
+- Deployed function search remains unchanged and continues to use the real backend.
+
 ## Contributors
 
 Please refer to the following Wiki pages:
 
-* [Overview](https://github.com/openlawnz/openlawnz-website/wiki/OpenLawNZ-Website-Overview)
-* [Contributing agreement and code of conduct](https://github.com/openlawnz/openlawnz-website/blob/master/CONTRIBUTING.md)
-* [Workflow](https://github.com/openlawnz/openlawnz-website/wiki/Workflow)
-
+- [Overview](https://github.com/openlawnz/openlawnz-website/wiki/OpenLawNZ-Website-Overview)
+- [Contributing agreement and code of conduct](https://github.com/openlawnz/openlawnz-website/blob/master/CONTRIBUTING.md)
+- [Workflow](https://github.com/openlawnz/openlawnz-website/wiki/Workflow)
 
 ## NOTICE
 

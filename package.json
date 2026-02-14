@@ -27,6 +27,7 @@
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-react": "^7.37.5",
     "gatsby-plugin-eslint": "^4.0.4",
+    "msw": "^2.12.10",
     "prettier": "3.4.2"
   },
   "homepage": "https://openlaw.nz/",
@@ -47,5 +48,10 @@
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
     "lint": "eslint"
+  },
+  "msw": {
+    "workerDirectory": [
+      "static"
+    ]
   }
 }

@@ -2,6 +2,20 @@
     margin-top: var(--margin-top-between-sections);
 }
 
+.pdf-error {
+    padding: 24px;
+    background: #fef3cd;
+    border: 1px solid #ffc107;
+    border-radius: 6px;
+    color: #664d03;
+    line-height: 1.6;
+}
+
+.pdf-error a {
+    color: #0d6efd;
+    text-decoration: underline;
+}
+
 #disclaimer {
 	margin-top: 45px;
 	border: 1px solid #2a5f64;
