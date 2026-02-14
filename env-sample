@@ -1,0 +1,13 @@
+# Azure Search Configuration
+SERVICE_NAME=your-azure-search-service-name
+ADMIN_KEY=your-admin-key
+QUERY_KEY=your-query-key
+INDEX_NAME=your-index-name
+SEARCH_ENV=production
+
+# Cloudflare Turnstile (Bot Protection)
+# Get keys from https://dash.cloudflare.com/?to=/:account/turnstile
+# GATSBY_ prefix exposes the variable to the browser (site key only - it's public)
+GATSBY_TURNSTILE_SITE_KEY=your-turnstile-site-key
+# Secret key stays server-side only (never expose this)
+TURNSTILE_SECRET_KEY=your-turnstile-secret-key

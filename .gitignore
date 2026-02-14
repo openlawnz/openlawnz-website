@@ -76,3 +76,5 @@ functions/api/node_modules/
 .vscode
 
 **/.DS_Store
+
+.pnpm-store

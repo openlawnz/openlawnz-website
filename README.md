@@ -5,21 +5,31 @@
 ## Running
 Create a `.env` file in the root of the project with the content copied of `env-sample`. 
 
-	yarn install
-	netlify dev
-
-Visit http://localhost:8888/
-
-## Running the CMS
-
-	npx netlify-cms-proxy-server
-	netlify dev
-
-Visit http://localhost:8888/admin/
-
 ## Building
 
 	gatsby build
+
+## Bot Protection (Cloudflare Turnstile)
+
+The search endpoint is protected by [Cloudflare Turnstile](https://www.cloudflare.com/products/turnstile/) to prevent abuse from bots.
+
+### Setup
+
+1. Go to [Cloudflare Dashboard](https://dash.cloudflare.com/?to=/:account/turnstile) and create a new Turnstile widget
+2. Choose "Invisible" mode for seamless user experience
+3. Add your domain to the allowed hostnames
+4. Copy the Site Key and Secret Key
+
+### Environment Variables
+
+Add these to your `.env` file (local) and Netlify environment variables (production):
+
+```
+GATSBY_TURNSTILE_SITE_KEY=your-site-key    # Public, exposed to browser
+TURNSTILE_SECRET_KEY=your-secret-key       # Private, server-side only
+```
+
+**Note:** The `GATSBY_` prefix is required for Gatsby to expose the variable to the browser. The site key is safe to expose publicly.
 
 ## Contributors
 
