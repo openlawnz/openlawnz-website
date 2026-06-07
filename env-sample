@@ -11,3 +11,13 @@ SEARCH_ENV=production
 GATSBY_TURNSTILE_SITE_KEY=your-turnstile-site-key
 # Secret key stays server-side only (never expose this)
 TURNSTILE_SECRET_KEY=your-turnstile-secret-key
+
+# Self-service API key page (src/pages/api-key.jsx)
+# Cognito Hosted UI + PKCE against a public app client. All GATSBY_-prefixed
+# (public values only - no client secret is used).
+GATSBY_COGNITO_DOMAIN=https://ap-southeast-2m9y9gwbjw.auth.ap-southeast-2.amazoncognito.com
+GATSBY_COGNITO_CLIENT_ID=7q3epnqr3gjmamvmlbepabfd1e
+# Must EXACTLY match a callback URL on the Cognito app client.
+# Local dev: http://localhost:8000/api-key   Production: https://www.openlaw.nz/api-key
+GATSBY_COGNITO_REDIRECT_URI=http://localhost:8000/api-key
+GATSBY_COGNITO_REGION=ap-southeast-2
