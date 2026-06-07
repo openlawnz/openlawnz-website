@@ -84,6 +84,16 @@ async function forceLogout() {
   window.location.assign(`${COGNITO_DOMAIN}/logout?${params.toString()}`)
 }
 
+// Plain sign-out: clear the Cognito session and return to this page (logout_uri
+// must be registered as a sign-out URL on the app client).
+function logout() {
+  const params = new URLSearchParams({
+    client_id: CLIENT_ID,
+    logout_uri: REDIRECT_URI,
+  })
+  window.location.assign(`${COGNITO_DOMAIN}/logout?${params.toString()}`)
+}
+
 async function exchangeCode(code) {
   const verifier = sessionStorage.getItem(VERIFIER_KEY)
   if (!verifier) {
@@ -227,6 +237,22 @@ const ApiKeyPage = () => {
               </button>
               <p style={{ marginTop: "1rem" }}>
                 Send it with each request as the <code>x-api-key</code> header.
+              </p>
+              <p>
+                <button
+                  onClick={logout}
+                  style={{
+                    background: "none",
+                    border: "none",
+                    padding: 0,
+                    color: "#0645ad",
+                    textDecoration: "underline",
+                    cursor: "pointer",
+                    font: "inherit",
+                  }}
+                >
+                  Log out
+                </button>
               </p>
             </>
           )}
