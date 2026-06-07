@@ -1,3 +1,4 @@
+/* eslint-env browser, es2021 */
 import { useEffect, useState } from "react"
 
 import HeroSmall from "@/components/hero/hero-small"
