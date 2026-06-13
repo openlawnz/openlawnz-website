@@ -201,6 +201,8 @@ const ApiKeyPage = () => {
       <HeroSmall title="API key" />
       <div className="inner">
         <div className="body-wrap content-page">
+          <div className="body-left">
+            <div className="content-section">
           {status === "idle" && (
             <>
               <p>
@@ -222,20 +224,31 @@ const ApiKeyPage = () => {
                 Your API key{email ? ` for ${email}` : ""} is ready. Keep it
                 private — treat it like a password.
               </p>
-              <pre
+              <div
                 style={{
-                  background: "#f6f8fa",
-                  padding: "12px",
-                  borderRadius: "6px",
-                  overflowX: "auto",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "12px",
+                  flexWrap: "wrap",
+                  margin: "1rem 0",
                 }}
               >
-                {apiKey}
-              </pre>
-              <button className="button" onClick={copyKey}>
-                {copied ? "Copied!" : "Copy key"}
-              </button>
-              <p style={{ marginTop: "1rem" }}>
+                <code
+                  style={{
+                    background: "#f6f8fa",
+                    padding: "12px 16px",
+                    borderRadius: "6px",
+                    overflowX: "auto",
+                    fontSize: "16px",
+                  }}
+                >
+                  {apiKey}
+                </code>
+                <button className="button" onClick={copyKey}>
+                  {copied ? "Copied!" : "Copy key"}
+                </button>
+              </div>
+              <p>
                 Send it with each request as the <code>x-api-key</code> header.
               </p>
               <p>
@@ -277,6 +290,8 @@ const ApiKeyPage = () => {
               </button>
             </>
           )}
+            </div>
+          </div>
         </div>
       </div>
     </Layout>
