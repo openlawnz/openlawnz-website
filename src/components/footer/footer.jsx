@@ -1,5 +1,7 @@
 import "./footer.css"
 
+import { Link } from "gatsby"
+
 import lawFoundationLogo from "@/images/global/law-foundation-logo.svg"
 
 const Footer = () => (
@@ -10,6 +12,9 @@ const Footer = () => (
           <p>
             &copy; OpenLaw NZ <span>|</span>{" "}
             <a href="https://www.register.charities.govt.nz/Charity/CC55967">Registered NZ Charity</a>
+          </p>
+          <p>
+            <Link to="/api-key">Get an API key</Link>
           </p>
           <p>
             <a href="https://seekvolunteer.co.nz/volunteering?organisationid=1567">Volunteering opportunities</a>
